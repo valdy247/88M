@@ -72,7 +72,36 @@ export function PrintResultsButton() {
       });
 
       const filename = `red-book-missed-${new Date().toISOString().slice(0, 10)}.pdf`;
-      doc.save(filename);
+      const blob = doc.output('blob');
+
+      // Prefer native share on mobile if available
+      try {
+        if (navigator.canShare) {
+          const file = new File([blob], filename, { type: 'application/pdf' });
+          if (navigator.canShare({ files: [file] })) {
+            await (navigator as any).share({ files: [file], title: filename, text: 'Missed questions from Red Book Trainer' });
+            return;
+          }
+        }
+      } catch (err) {
+        // ignore and fall back
+        console.warn('navigator.share failed', err);
+      }
+
+      // Fallback: open PDF in new tab (works on iOS WebKit browsers)
+      const url = URL.createObjectURL(blob);
+      try {
+        window.open(url, '_blank');
+      } catch (e) {
+        // some browsers block window.open from async handlers - try anchor download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 15000);
     } catch (error) {
       console.error('PDF export failed', error);
       alert('No se pudo generar el PDF en este dispositivo. Intenta desde un navegador de escritorio o usa la función de imprimir.');
