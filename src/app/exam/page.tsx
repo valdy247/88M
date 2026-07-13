@@ -139,7 +139,7 @@ export default function ExamPage() {
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-amber-300">Exam mode</p>
-              <h1 className="text-lg font-semibold text-white">Be PV2 MENA for my battles buddies.</h1>
+              <h1 className="text-lg font-semibold text-white">Built by PV2 MENA for my battle buddies</h1>
             </div>
             <div className="relative">
               <button
