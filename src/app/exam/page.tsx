@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight, Circle, Clock3, Home, ListChecks, Menu, Send, X 
 import { ExamHeader } from '../../components/exam/ExamHeader';
 import { CountdownTimer } from '../../components/exam/CountdownTimer';
 import { QuestionCard } from '../../components/exam/QuestionCard';
-import { QuestionNavigator } from '../../components/exam/QuestionNavigator';
+
 import { SubmitTestDialog } from '../../components/exam/SubmitTestDialog';
 import { loadExamSession, saveExamSession, clearExamSession, createExamSession } from '../../lib/storage/exam-storage';
 import { generateExam } from '../../lib/exam/generate-exam';
@@ -237,12 +237,6 @@ export default function ExamPage() {
               </div>
               <p className="mt-3 text-sm text-slate-300">Answered {answeredCount} of 25 questions.</p>
             </div>
-            <QuestionNavigator
-              questions={session.questions}
-              answers={session.answers}
-              currentIndex={session.currentQuestionIndex}
-              onSelect={moveQuestion}
-            />
             <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 text-sm leading-6 text-slate-300">
               <p className="font-semibold text-white">Session controls</p>
               <p className="mt-3">You can refresh the page and resume this exam without losing progress.</p>
