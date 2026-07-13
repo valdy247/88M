@@ -57,6 +57,10 @@ export function calculateResults(session: ExamSession) {
   const unansweredCount = getUnansweredCount(session);
   const percentage = getPercentage(session);
   const passed = percentage >= 80;
+  const categoryPerformance = getCategoryPerformance(session);
+  const weakCategories = categoryPerformance
+    .filter((item) => item.total > 0 && item.correct / item.total < 0.6)
+    .map((item) => item.category);
 
   return {
     correctCount,
@@ -64,7 +68,9 @@ export function calculateResults(session: ExamSession) {
     unansweredCount,
     percentage,
     timeUsed: getTimeUsed(session),
-    categoryPerformance: getCategoryPerformance(session),
-    practiceResult: passed ? 'Pass' : 'Needs review'
+    categoryPerformance,
+    practiceResult: passed ? 'Pass' : 'Needs review',
+    passed,
+    weakCategories
   };
 }

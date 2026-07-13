@@ -55,6 +55,9 @@ export default function ResultsPage() {
               <ArrowLeft className="h-4 w-4" /> Start New Test
             </Link>
           </div>
+          <div className="mt-4 rounded-3xl border border-slate-800 bg-slate-900/80 p-4 text-sm text-slate-300">
+            <p className="font-semibold text-white">Review your missed questions below, then export them to PDF for focused study.</p>
+          </div>
           <ResultsSummary session={session} results={results} />
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap gap-3">

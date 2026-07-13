@@ -3,6 +3,10 @@
 import { Printer } from 'lucide-react';
 import { loadExamSession } from '../../lib/storage/exam-storage';
 
+function splitText(doc: any, text: string, maxWidth: number) {
+  return doc.splitTextToSize(text, maxWidth);
+}
+
 export function PrintResultsButton() {
   const handleExport = async () => {
     const session = loadExamSession();
@@ -11,7 +15,6 @@ export function PrintResultsButton() {
       return;
     }
 
-    // collect missed or unanswered questions
     const missed = session.questions.filter((q) => {
       const answer = session.answers[q.id];
       return !answer || answer !== q.correctAnswer;
@@ -22,57 +25,57 @@ export function PrintResultsButton() {
       return;
     }
 
-    // build printable container
-    const container = document.createElement('div');
-    container.style.padding = '24px';
-    container.style.fontFamily = 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial';
-    container.innerHTML = `
-      <h1 style="font-size:20px; margin-bottom:8px;">Red Book Trainer — Missed Questions</h1>
-      <p style="font-size:12px; color:#666; margin-bottom:18px;">Exported: ${new Date().toLocaleString()}</p>
-      ${missed
-        .map((q, i) => {
-          const user = session.answers[q.id] ?? 'Unanswered';
-          const correct = q.correctAnswer;
-          const optionText = (id: string) => {
-            const opt = q.options.find((o) => o.id === id);
-            return opt ? opt.text : '';
-          };
-          return `
-            <div style="margin-bottom:18px;">
-              <div style="font-weight:600;">${i + 1}. ${q.question}</div>
-              <div style="margin-top:6px;">
-                <div><strong>Your answer:</strong> ${user === 'Unanswered' ? 'Unanswered' : user + ' — ' + optionText(user)}</div>
-                <div><strong>Correct answer:</strong> ${correct} — ${optionText(correct)}</div>
-              </div>
-              <div style="margin-top:8px; font-size:12px; color:#444;"><em>${q.explanation}</em></div>
-            </div>
-          `;
-        })
-        .join('')}
-    `;
-
-    document.body.appendChild(container);
-
     try {
-      // dynamically import html2pdf to generate and auto-download PDF
-      const mod = await import('html2pdf.js');
-      const html2pdf = (mod as any).default ?? (mod as any);
-      const filename = `red-book-missed-${new Date().toISOString().slice(0,10)}.pdf`;
-      await html2pdf()
-        .set({
-          margin: 10,
-          filename,
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        })
-        .from(container)
-        .save();
-    } catch (err) {
-      // fallback to print if html2pdf not available
-      console.error(err);
-      window.print();
-    } finally {
-      container.remove();
+      const { jsPDF } = await import('jspdf');
+      const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+      const margin = 14;
+      const pageWidth = 210 - margin * 2;
+      let y = 18;
+
+      doc.setFontSize(18);
+      doc.text('Red Book Trainer — Missed Questions', margin, y);
+      y += 10;
+      doc.setFontSize(10);
+      doc.text(`Exported: ${new Date().toLocaleString()}`, margin, y);
+      y += 12;
+
+      missed.forEach((q, index) => {
+        const userAnswer = session.answers[q.id] ?? 'Unanswered';
+        const correctAnswer = q.correctAnswer;
+        const userText = userAnswer === 'Unanswered' ? 'Unanswered' : `${userAnswer} — ${q.options.find((option) => option.id === userAnswer)?.text ?? ''}`;
+        const correctText = `${correctAnswer} — ${q.options.find((option) => option.id === correctAnswer)?.text ?? ''}`;
+
+        doc.setFontSize(12);
+        const questionLines = splitText(doc, `${index + 1}. ${q.question}`, pageWidth);
+        doc.text(questionLines, margin, y);
+        y += questionLines.length * 6;
+
+        doc.setFontSize(10);
+        const answerLines = splitText(doc, `Your answer: ${userText}`, pageWidth);
+        doc.text(answerLines, margin, y);
+        y += answerLines.length * 5.5;
+
+        const correctLines = splitText(doc, `Correct answer: ${correctText}`, pageWidth);
+        doc.text(correctLines, margin, y);
+        y += correctLines.length * 5.5;
+
+        const explanationLines = splitText(doc, `Explanation: ${q.explanation}`, pageWidth);
+        doc.setFontSize(9);
+        doc.text(explanationLines, margin, y);
+        y += explanationLines.length * 5.5;
+        y += 8;
+
+        if (y > 270 && index !== missed.length - 1) {
+          doc.addPage();
+          y = 18;
+        }
+      });
+
+      const filename = `red-book-missed-${new Date().toISOString().slice(0, 10)}.pdf`;
+      doc.save(filename);
+    } catch (error) {
+      console.error('PDF export failed', error);
+      alert('No se pudo generar el PDF en este dispositivo. Intenta desde un navegador de escritorio o usa la función de imprimir.');
     }
   };
 
@@ -81,6 +84,7 @@ export function PrintResultsButton() {
       type="button"
       onClick={handleExport}
       className="inline-flex items-center gap-2 rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500"
+      aria-label="Export missed questions as PDF"
     >
       <Printer className="h-4 w-4" />
       Export Missed as PDF

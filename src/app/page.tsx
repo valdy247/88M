@@ -64,6 +64,7 @@ export default function HomePage() {
                 <li className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">One answer per question</li>
                 <li className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">Review answers after submission</li>
                 <li className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">Print or copy results</li>
+                <li className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">Export missed questions as a study PDF</li>
               </ul>
             </div>
           </div>
