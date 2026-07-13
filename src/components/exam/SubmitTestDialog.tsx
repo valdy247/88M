@@ -9,6 +9,7 @@ interface SubmitTestDialogProps {
   timeRemaining: TimeRemaining;
   onCancel: () => void;
   onConfirm: () => void;
+  onReview?: () => void;
 }
 
 function formatRemaining(endsAt: number): string {
@@ -55,6 +56,16 @@ export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRem
           >
             Submit Test
           </button>
+          {/* Optional review button (shown when handler provided) */}
+          {typeof (onReview) === 'function' && (
+            <button
+              type="button"
+              onClick={onReview}
+              className="rounded-2xl border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500"
+            >
+              Review Answers
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -64,9 +64,15 @@ export default function ExamPage() {
   }
 
   const handleAnswer = (questionId: string, answerId: AnswerId) => {
+    if (!session) return;
+    const isLast = session.currentQuestionIndex === session.questions.length - 1;
     setSession((current) => {
       if (!current) return current;
       const answers = { ...current.answers, [questionId]: answerId };
+      if (isLast) {
+        // on last question, save answer but do not advance — show submit dialog
+        return { ...current, answers };
+      }
       const nextIndex = Math.min(current.questions.length - 1, current.currentQuestionIndex + 1);
       return {
         ...current,
@@ -74,6 +80,9 @@ export default function ExamPage() {
         currentQuestionIndex: nextIndex
       };
     });
+    if (isLast) {
+      setShowDialog(true);
+    }
   };
 
   const moveQuestion = (index: number) => {
@@ -218,6 +227,10 @@ export default function ExamPage() {
         timeRemaining={{ startedAt: session.startedAt, endsAt: session.endsAt }}
         onCancel={() => setShowDialog(false)}
         onConfirm={confirmSubmit}
+        onReview={() => {
+          setShowDialog(false);
+          router.push('/review');
+        }}
       />
     </main>
   );
