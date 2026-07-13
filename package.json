@@ -12,6 +12,7 @@
     "validate:questions": "tsx src/lib/validation/validate-questions.ts"
   },
   "dependencies": {
+    "html2pdf.js": "^0.14.0",
     "lucide-react": "^0.532.0",
     "next": "14.2.5",
     "react": "18.3.1",
