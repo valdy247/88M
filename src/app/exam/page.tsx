@@ -18,6 +18,7 @@ export default function ExamPage() {
   const router = useRouter();
   const [session, setSession] = useState<ExamSession | null>(null);
   const [showDialog, setShowDialog] = useState(false);
+  const [dialogMode, setDialogMode] = useState<'manual' | 'last'>('manual');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -81,6 +82,7 @@ export default function ExamPage() {
       };
     });
     if (isLast) {
+      setDialogMode('last');
       setShowDialog(true);
     }
   };
@@ -104,6 +106,7 @@ export default function ExamPage() {
   const answeredCount = 25 - unansweredCount;
 
   const handleSubmit = () => {
+    setDialogMode('manual');
     setShowDialog(true);
   };
 
@@ -231,6 +234,7 @@ export default function ExamPage() {
           setShowDialog(false);
           router.push('/review');
         }}
+        showReview={dialogMode === 'manual'}
       />
     </main>
   );

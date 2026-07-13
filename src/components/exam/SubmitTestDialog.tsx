@@ -10,6 +10,7 @@ interface SubmitTestDialogProps {
   onCancel: () => void;
   onConfirm: () => void;
   onReview?: () => void;
+  showReview?: boolean;
 }
 
 function formatRemaining(endsAt: number): string {
@@ -19,7 +20,7 @@ function formatRemaining(endsAt: number): string {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
-export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRemaining, onCancel, onConfirm, onReview }: SubmitTestDialogProps) {
+export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRemaining, onCancel, onConfirm, onReview, showReview = true }: SubmitTestDialogProps) {
   if (!open) return null;
 
   return (
@@ -57,7 +58,7 @@ export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRem
             Submit Test
           </button>
           {/* Optional review button (shown when handler provided) */}
-          {typeof (onReview) === 'function' && (
+          {showReview && typeof onReview === 'function' && (
             <button
               type="button"
               onClick={onReview}
