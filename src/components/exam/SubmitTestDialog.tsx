@@ -19,7 +19,7 @@ function formatRemaining(endsAt: number): string {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
-export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRemaining, onCancel, onConfirm }: SubmitTestDialogProps) {
+export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRemaining, onCancel, onConfirm, onReview }: SubmitTestDialogProps) {
   if (!open) return null;
 
   return (
