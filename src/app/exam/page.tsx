@@ -66,9 +66,12 @@ export default function ExamPage() {
   const handleAnswer = (questionId: string, answerId: AnswerId) => {
     setSession((current) => {
       if (!current) return current;
+      const answers = { ...current.answers, [questionId]: answerId };
+      const nextIndex = Math.min(current.questions.length - 1, current.currentQuestionIndex + 1);
       return {
         ...current,
-        answers: { ...current.answers, [questionId]: answerId }
+        answers,
+        currentQuestionIndex: nextIndex
       };
     });
   };
