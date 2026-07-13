@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, ArrowRight, Circle, Clock3, ListChecks, Send } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Circle, Clock3, Home, ListChecks, Menu, Send, X } from 'lucide-react';
 import { ExamHeader } from '../../components/exam/ExamHeader';
 import { CountdownTimer } from '../../components/exam/CountdownTimer';
 import { QuestionCard } from '../../components/exam/QuestionCard';
@@ -19,6 +20,7 @@ export default function ExamPage() {
   const [session, setSession] = useState<ExamSession | null>(null);
   const [showDialog, setShowDialog] = useState(false);
   const [dialogMode, setDialogMode] = useState<'manual' | 'last'>('manual');
+  const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -133,6 +135,36 @@ export default function ExamPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-6">
+        <div className="relative rounded-3xl border border-slate-800 bg-[#111214] p-5 shadow-glow">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-amber-300">Exam mode</p>
+              <h1 className="text-lg font-semibold text-white">Be PV2 MENA for my battles buddies.</h1>
+            </div>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setMenuOpen((current) => !current)}
+                aria-label="Open menu"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-700 bg-slate-900 text-slate-100 transition hover:border-slate-500"
+              >
+                {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+              {menuOpen && (
+                <div className="absolute right-0 top-full mt-2 w-40 rounded-3xl border border-slate-800 bg-[#0f1317] p-3 shadow-glow">
+                  <Link
+                    href="/"
+                    className="flex items-center gap-2 rounded-2xl px-3 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-900"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <Home className="h-4 w-4" />
+                    Home
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
         <ExamHeader
           questionNumber={session.currentQuestionIndex + 1}
           totalQuestions={session.questions.length}
