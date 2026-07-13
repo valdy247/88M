@@ -39,7 +39,7 @@ export default function ReviewPage() {
 
   const submitFromReview = () => {
     const now = Date.now();
-    const submittedSession: ExamSession = { ...session, status: 'submitted' as const, submittedAt: now, submissionReason: 'manual' as const };
+    const submittedSession: ExamSession = { ...session, status: 'submitted' as const, submittedAt: now };
     saveExamSession(submittedSession);
     // Replace review/exam history entry with home so Back navigates to home
     router.replace('/');

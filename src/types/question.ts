@@ -4,7 +4,7 @@ export type Category =
   | 'Radio Procedures'
   | 'Strip Maps'
   | 'SALUTE Report'
-  | '9-Line MEDEVAC'
+  
   | 'Accident Forms'
   | 'PMCS'
   | 'DA Form 5988-E'

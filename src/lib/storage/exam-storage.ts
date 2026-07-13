@@ -49,7 +49,6 @@ export function createExamSession(questions: ExamQuestion[]): ExamSession {
     startedAt,
     endsAt,
     submittedAt: null,
-    submissionReason: null,
     status: 'active'
   };
 }

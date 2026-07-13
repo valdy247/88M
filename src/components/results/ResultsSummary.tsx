@@ -52,10 +52,7 @@ export function ResultsSummary({ session, results }: ResultsSummaryProps) {
             <dt className="text-slate-400">Time used</dt>
             <dd className="mt-1 text-white">{results.timeUsed}</dd>
           </div>
-          <div>
-            <dt className="text-slate-400">Submission reason</dt>
-            <dd className="mt-1 text-white">{session.submissionReason ?? 'Unknown'}</dd>
-          </div>
+          
           <div>
             <dt className="text-slate-400">Practice benchmark</dt>
             <dd className="mt-1 text-white">{results.practiceResult} ({results.percentage >= 80 ? '80% threshold met' : '80% threshold not met'})</dd>

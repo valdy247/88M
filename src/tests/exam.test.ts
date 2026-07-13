@@ -66,7 +66,6 @@ describe('Result calculations and timer', () => {
     startedAt: Date.now() - 10000,
     endsAt: Date.now() + 100000,
     submittedAt: Date.now(),
-    submissionReason: 'manual',
     status: 'submitted'
   };
 

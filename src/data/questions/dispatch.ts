@@ -7,7 +7,7 @@ export const dispatchProcedures: Question[] = [
     difficulty: 'easy',
     question: 'What is DA Form 5987-E associated with?',
     options: [
-      { id: 'A', text: '9-Line MEDEVAC requests' },
+      { id: 'A', text: 'MEDEVAC requests' },
       { id: 'B', text: 'Equipment dispatch and usage records' },
       { id: 'C', text: 'Accident identification cards' },
       { id: 'D', text: 'Equipment maintenance worksheets' }

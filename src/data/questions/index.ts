@@ -3,7 +3,6 @@ import { da5988e } from './da-5988e';
 import { dispatchProcedures } from './dispatch';
 import { groundGuides } from './ground-guides';
 import { handArmSignals } from './hand-arm-signals';
-import { medevac } from './medevac';
 import { pmcs } from './pmcs';
 import { radioProcedures } from './radio-procedures';
 import { saluteReport } from './salute';
@@ -15,7 +14,6 @@ export const allQuestions: Question[] = [
   ...radioProcedures,
   ...stripMaps,
   ...saluteReport,
-  ...medevac,
   ...accidentForms,
   ...pmcs,
   ...da5988e,
@@ -29,7 +27,6 @@ export const questionCategories = {
   'Radio Procedures': radioProcedures,
   'Strip Maps': stripMaps,
   'SALUTE Report': saluteReport,
-  '9-Line MEDEVAC': medevac,
   'Accident Forms': accidentForms,
   'PMCS': pmcs,
   'DA Form 5988-E': da5988e,

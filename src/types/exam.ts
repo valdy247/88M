@@ -18,7 +18,6 @@ export interface ExamSession {
   startedAt: number;
   endsAt: number;
   submittedAt: number | null;
-  submissionReason: 'manual' | 'time-expired' | null;
   status: 'active' | 'submitted';
 }
 

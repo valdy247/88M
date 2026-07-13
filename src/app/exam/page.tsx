@@ -116,7 +116,6 @@ export default function ExamPage() {
       ...session,
       status: 'submitted' as const,
       submittedAt: now,
-      submissionReason: 'manual' as const
     };
     saveExamSession(submittedSession);
     // Replace current exam entry with home so browser Back goes to home
@@ -152,7 +151,6 @@ export default function ExamPage() {
                   ...session,
                   status: 'submitted' as const,
                   submittedAt: now,
-                  submissionReason: 'time-expired' as const
                 };
                 saveExamSession(expired);
                 // Ensure Back goes to home after forced submit

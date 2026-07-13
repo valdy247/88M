@@ -6,7 +6,6 @@ const blueprint: Record<Category, number> = {
   'Radio Procedures': 3,
   'Strip Maps': 2,
   'SALUTE Report': 2,
-  '9-Line MEDEVAC': 3,
   'Accident Forms': 3,
   'PMCS': 3,
   'DA Form 5988-E': 2,
