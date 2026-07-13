@@ -1,0 +1,118 @@
+import { expect, test, describe, beforeEach } from 'vitest';
+import { allQuestions } from '../data/questions';
+import { generateExam } from '../lib/exam/generate-exam';
+import { shuffleQuestionOptions, shuffleArray } from '../lib/exam/shuffle';
+import { calculateResults, getCorrectCount, getIncorrectCount, getUnansweredCount, getCategoryPerformance } from '../lib/exam/calculate-results';
+import { formatTimer, getTimeRemaining } from '../lib/exam/timer';
+import { loadExamSession, saveExamSession, clearExamSession, createExamSession } from '../lib/storage/exam-storage';
+import type { ExamSession } from '../types/exam';
+
+describe('Exam utilities', () => {
+  test('selects exactly 25 unique questions', () => {
+    const exam = generateExam(allQuestions);
+    expect(exam).toHaveLength(25);
+    const ids = new Set(exam.map((question) => question.id));
+    expect(ids.size).toBe(25);
+  });
+
+  test('selects a balanced category set with no duplicates', () => {
+    const exam = generateExam(allQuestions);
+    const categoryCounts = exam.reduce<Record<string, number>>((acc, question) => {
+      acc[question.category] = (acc[question.category] ?? 0) + 1;
+      return acc;
+    }, {});
+    expect(Object.values(categoryCounts).reduce((sum, value) => sum + value, 0)).toBe(25);
+    expect(new Set(exam.map((question) => question.id)).size).toBe(25);
+  });
+
+  test('shuffling preserves the correct answer mapping', () => {
+    const original = allQuestions[0];
+    const shuffled = shuffleQuestionOptions(original);
+    const correctLabel = shuffled.correctAnswer;
+    expect(['A', 'B', 'C', 'D']).toContain(correctLabel);
+    const correctOption = shuffled.shuffledOptions.find((option) => option.id === correctLabel);
+    expect(correctOption).toBeDefined();
+    expect(correctOption?.text).toBe(original.options.find((option) => option.id === original.correctAnswer)?.text);
+  });
+
+  test('question bank contains no duplicate IDs or duplicate text', () => {
+    const ids = allQuestions.map((question) => question.id);
+    expect(new Set(ids).size).toBe(ids.length);
+
+    const normalizedText = allQuestions.map((question) =>
+      question.question.trim().toLowerCase().replace(/\s+/g, ' ')
+    );
+    expect(new Set(normalizedText).size).toBe(normalizedText.length);
+  });
+
+  test('questions have exactly four options and valid answer IDs', () => {
+    for (const question of allQuestions) {
+      expect(question.options).toHaveLength(4);
+      const optionIds = question.options.map((option) => option.id);
+      expect(new Set(optionIds)).toEqual(new Set(['A', 'B', 'C', 'D']));
+      expect(optionIds).toContain(question.correctAnswer);
+      expect(question.question.trim()).not.toBe('');
+      expect(question.explanation.trim()).not.toBe('');
+    }
+  });
+});
+
+describe('Result calculations and timer', () => {
+  const session: ExamSession = {
+    sessionId: 'test-session',
+    questions: allQuestions.slice(0, 3).map(shuffleQuestionOptions),
+    answers: {},
+    currentQuestionIndex: 0,
+    startedAt: Date.now() - 10000,
+    endsAt: Date.now() + 100000,
+    submittedAt: Date.now(),
+    submissionReason: 'manual',
+    status: 'submitted'
+  };
+
+  beforeEach(() => {
+    session.answers = Object.fromEntries(session.questions.map((question) => [question.id, null]));
+  });
+
+  test('calculates correct, incorrect, and unanswered counts', () => {
+    session.answers[session.questions[0].id] = session.questions[0].correctAnswer;
+    session.answers[session.questions[1].id] = 'A';
+    const correct = getCorrectCount(session);
+    const incorrect = getIncorrectCount(session);
+    const unanswered = getUnansweredCount(session);
+    expect(correct).toBe(1);
+    expect(incorrect).toBe(1);
+    expect(unanswered).toBe(1);
+  });
+
+  test('calculates category performance', () => {
+    const performance = getCategoryPerformance(session);
+    expect(performance.length).toBeGreaterThan(0);
+    performance.forEach((item) => {
+      expect(item.total).toBeGreaterThanOrEqual(1);
+    });
+  });
+
+  test('formats timer and status correctly', () => {
+    const future = Date.now() + 3 * 60000;
+    const remaining = getTimeRemaining(future);
+    expect(remaining.status).toBe('critical');
+    expect(formatTimer(remaining.remainingMs)).toMatch(/\d{2}:\d{2}/);
+  });
+});
+
+describe('Local storage session persistence', () => {
+  beforeEach(() => {
+    clearExamSession();
+    globalThis.localStorage.clear();
+  });
+
+  test('saves and loads exam session from localStorage', () => {
+    const examSession = createExamSession(generateExam(allQuestions));
+    saveExamSession(examSession);
+    const loaded = loadExamSession();
+    expect(loaded).not.toBeNull();
+    expect(loaded?.sessionId).toBe(examSession.sessionId);
+    expect(loaded?.questions).toHaveLength(25);
+  });
+});
