@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { loadExamSession, saveExamSession, clearExamSession } from '../../lib/storage/exam-storage';
 import { ReviewQuestionCard } from '../../components/results/ReviewQuestionCard';
@@ -9,6 +10,7 @@ import { ExamSession } from '../../types/exam';
 import { calculateResults } from '../../lib/exam/calculate-results';
 
 export default function ReviewPage() {
+  const router = useRouter();
   const [session, setSession] = useState<ExamSession | null>(null);
   const [showAll, setShowAll] = useState(true);
 
@@ -39,7 +41,9 @@ export default function ReviewPage() {
     const now = Date.now();
     const submittedSession: ExamSession = { ...session, status: 'submitted' as const, submittedAt: now, submissionReason: 'manual' as const };
     saveExamSession(submittedSession);
-    window.location.href = '/results';
+    // Replace review/exam history entry with home so Back navigates to home
+    router.replace('/');
+    router.push('/results');
   };
 
   return (

@@ -119,6 +119,8 @@ export default function ExamPage() {
       submissionReason: 'manual' as const
     };
     saveExamSession(submittedSession);
+    // Replace current exam entry with home so browser Back goes to home
+    router.replace('/');
     router.push('/results');
   };
 
@@ -153,6 +155,8 @@ export default function ExamPage() {
                   submissionReason: 'time-expired' as const
                 };
                 saveExamSession(expired);
+                // Ensure Back goes to home after forced submit
+                router.replace('/');
                 router.push('/results');
               }}
             />
