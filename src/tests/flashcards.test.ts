@@ -2,10 +2,13 @@ import { describe, expect, test } from 'vitest';
 import { flashcards, flashcardCategories } from '../data/flashcards';
 
 describe('Flashcard deck', () => {
-  test('contains 150 unique flashcards from the submitted batches', () => {
-    expect(flashcards).toHaveLength(150);
-    expect(new Set(flashcards.map((card) => card.id)).size).toBe(150);
-    expect(new Set(flashcards.map((card) => card.question.trim().toLowerCase())).size).toBe(150);
+  test('contains all 200 unique flashcards', () => {
+    expect(flashcards).toHaveLength(200);
+    expect(new Set(flashcards.map((card) => card.id)).size).toBe(200);
+    expect(new Set(flashcards.map((card) => card.question.trim().toLowerCase())).size).toBe(200);
+    expect(flashcards.map((card) => card.id)).toEqual(
+      Array.from({ length: 200 }, (_, index) => `fc-${String(index + 1).padStart(3, '0')}`)
+    );
   });
 
   test('has complete questions, answers, and categories', () => {
