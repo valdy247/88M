@@ -19,6 +19,29 @@ export default function ReviewPage() {
     if (loaded) setSession(loaded);
   }, []);
 
+  useEffect(() => {
+    if (!session || session.status !== 'active') return;
+
+    const submitExpiredExam = () => {
+      const submittedSession: ExamSession = {
+        ...session,
+        status: 'submitted',
+        submittedAt: Date.now()
+      };
+      saveExamSession(submittedSession);
+      router.replace('/results');
+    };
+
+    const remainingMs = session.endsAt - Date.now();
+    if (remainingMs <= 0) {
+      submitExpiredExam();
+      return;
+    }
+
+    const timeout = window.setTimeout(submitExpiredExam, remainingMs);
+    return () => window.clearTimeout(timeout);
+  }, [router, session]);
+
   if (!session) {
     return (
       <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-8 sm:px-6 lg:px-8">

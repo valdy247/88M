@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, RefreshCcw } from 'lucide-react';
-import { loadExamSession, clearExamSession } from '../../lib/storage/exam-storage';
+import { loadExamSession, saveExamSession, clearExamSession } from '../../lib/storage/exam-storage';
 import type { ExamSession } from '../../types/exam';
 
 export function ResumeTestCard() {
@@ -12,6 +12,11 @@ export function ResumeTestCard() {
   useEffect(() => {
     const loaded = loadExamSession();
     if (loaded?.status === 'active') {
+      if (loaded.endsAt <= Date.now()) {
+        saveExamSession({ ...loaded, status: 'submitted', submittedAt: Date.now() });
+        window.location.replace('/results');
+        return;
+      }
       setSession(loaded);
     }
   }, []);
