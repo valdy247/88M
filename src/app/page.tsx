@@ -40,7 +40,7 @@ export default function HomePage() {
               <Layers3 className="h-5 w-5" />
               <h2 className="text-2xl font-semibold text-white">88M Flashcards</h2>
             </div>
-            <p className="text-slate-300">Study convoy operations, formations, ground guiding, and hand signals with 50 interactive cards.</p>
+            <p className="text-slate-300">Study convoy operations, PMCS, forms, radio procedures, and more with 100 interactive cards.</p>
             <Link
               href="/flashcards"
               className="inline-flex w-full items-center justify-center rounded-2xl bg-olive-600 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-olive-500"
