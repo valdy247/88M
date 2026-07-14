@@ -94,7 +94,9 @@ describe('Result calculations and timer', () => {
 
   test('calculates correct, incorrect, and unanswered counts', () => {
     session.answers[session.questions[0].id] = session.questions[0].correctAnswer;
-    session.answers[session.questions[1].id] = 'A';
+    session.answers[session.questions[1].id] = (['A', 'B', 'C', 'D'] as const).find(
+      (answer) => answer !== session.questions[1].correctAnswer
+    ) ?? 'A';
     const correct = getCorrectCount(session);
     const incorrect = getIncorrectCount(session);
     const unanswered = getUnansweredCount(session);
