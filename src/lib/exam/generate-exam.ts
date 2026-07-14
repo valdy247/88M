@@ -25,8 +25,27 @@ function uniqueById(items: Question[]): Question[] {
 }
 
 function pickFromPool(pool: Question[], count: number): Question[] {
-  const copy = shuffleArray(pool);
-  return copy.slice(0, Math.min(count, copy.length));
+  const targetCount = Math.min(count, pool.length);
+  const hardTarget = Math.min(
+    targetCount >= 3 ? Math.max(1, Math.round(targetCount * 0.15)) : 0,
+    pool.filter((question) => question.difficulty === 'hard').length
+  );
+  const mediumTarget = Math.min(
+    Math.round(targetCount * 0.55),
+    pool.filter((question) => question.difficulty === 'medium').length
+  );
+  const easyTarget = Math.min(
+    Math.max(0, targetCount - hardTarget - mediumTarget),
+    pool.filter((question) => question.difficulty === 'easy').length
+  );
+  const selected = [
+    ...shuffleArray(pool.filter((question) => question.difficulty === 'medium')).slice(0, mediumTarget),
+    ...shuffleArray(pool.filter((question) => question.difficulty === 'easy')).slice(0, easyTarget),
+    ...shuffleArray(pool.filter((question) => question.difficulty === 'hard')).slice(0, hardTarget)
+  ];
+  const remaining = shuffleArray(pool.filter((question) => !selected.some((item) => item.id === question.id)));
+
+  return shuffleArray([...selected, ...remaining.slice(0, targetCount - selected.length)]);
 }
 
 export function generateExam(questions: Question[], totalQuestions = 25): ExamQuestion[] {

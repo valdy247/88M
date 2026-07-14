@@ -15,11 +15,11 @@ describe('Exam utilities', () => {
     expect(ids.size).toBe(25);
   });
 
-  test('selects exactly 100 unique questions for BIG ASS TEST', () => {
-    const exam = generateExam(allQuestions, 100);
-    expect(exam).toHaveLength(100);
+  test('selects exactly 50 unique questions for BIG ASS TEST', () => {
+    const exam = generateExam(allQuestions, 50);
+    expect(exam).toHaveLength(50);
     const ids = new Set(exam.map((question) => question.id));
-    expect(ids.size).toBe(100);
+    expect(ids.size).toBe(50);
   });
 
   test('selects a balanced category set with no duplicates', () => {
@@ -30,6 +30,18 @@ describe('Exam utilities', () => {
     }, {});
     expect(Object.values(categoryCounts).reduce((sum, value) => sum + value, 0)).toBe(25);
     expect(new Set(exam.map((question) => question.id)).size).toBe(25);
+  });
+
+  test.each([25, 50])('favors medium questions without making a %i-question exam too easy or too hard', (size) => {
+    const exam = generateExam(allQuestions, size);
+    const counts = exam.reduce<Record<string, number>>((acc, question) => {
+      acc[question.difficulty] = (acc[question.difficulty] ?? 0) + 1;
+      return acc;
+    }, {});
+
+    expect(counts.medium).toBeGreaterThan(size / 2);
+    expect(counts.easy).toBeLessThanOrEqual(Math.ceil(size * 0.3));
+    expect(counts.hard).toBeLessThanOrEqual(Math.ceil(size * 0.2));
   });
 
   test('shuffling preserves the correct answer mapping', () => {

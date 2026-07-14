@@ -40,7 +40,7 @@ export default function HomePage() {
               <ListChecks className="h-5 w-5" />
               <h2 className="text-2xl font-semibold text-white">BIG ASS TEST</h2>
             </div>
-            <p className="text-slate-300">100 randomized questions in a separate full-length test.</p>
+            <p className="text-slate-300">50 randomized questions in a separate full-length test.</p>
             <Link
               href="/exam?mode=big"
               className="inline-flex w-full items-center justify-center rounded-2xl bg-amber-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-400"

@@ -80,16 +80,16 @@ export const groundGuides: Question[] = [
     id: 'ground-06',
     category: 'Ground Guide Procedures',
     difficulty: 'medium',
-    question: 'What distance is generally recommended between a ground guide and the vehicle?',
+    question: 'When choosing a position, what should determine the ground guide’s distance from the vehicle?',
     options: [
-      { id: 'A', text: 'Approximately 10 yards' },
+      { id: 'A', text: 'Driver visibility, hazard awareness, and clearance from the vehicle path' },
       { id: 'B', text: 'Within arm’s reach' },
-      { id: 'C', text: 'Less than 5 feet' },
-      { id: 'D', text: 'Directly next to the tires' }
+      { id: 'C', text: 'One fixed distance for every vehicle and location' },
+      { id: 'D', text: 'Standing directly behind the vehicle to judge alignment' }
     ],
     correctAnswer: 'A',
-    explanation: 'A ground guide should generally remain about 10 yards away where applicable.',
-    sourceTopic: 'Ground Guide Procedures'
+    explanation: 'The safe position depends on the vehicle and surroundings; the guide must remain visible, observe hazards, and stay clear of the vehicle’s path.',
+    sourceTopic: 'Ground Guide Safety'
   },
   {
     id: 'ground-07',

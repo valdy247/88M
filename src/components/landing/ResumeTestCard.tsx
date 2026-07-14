@@ -18,7 +18,7 @@ export function ResumeTestCard() {
 
   if (!session) return null;
 
-  const examHref = session.questions.length === 100 ? '/exam?mode=big' : '/exam';
+  const examHref = session.questions.length === 50 ? '/exam?mode=big' : '/exam';
 
   const timeRemainingMs = Math.max(0, session.endsAt - Date.now());
   const minutes = Math.floor(timeRemainingMs / 60000);

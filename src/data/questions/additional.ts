@@ -154,32 +154,32 @@ export const additionalQuestions: Question[] = [
   {
     id: 'additional-11',
     category: 'Ground Guide',
-    difficulty: 'easy',
-    question: 'How far should a ground guide stay from the vehicle whenever possible?',
+    difficulty: 'medium',
+    question: 'Which position best allows a ground guide to control a vehicle safely?',
     options: [
-      { id: 'A', text: '5 yards' },
-      { id: 'B', text: '10 yards' },
-      { id: 'C', text: '20 yards' },
-      { id: 'D', text: '25 yards' }
+      { id: 'A', text: 'Close enough to touch the vehicle while it moves' },
+      { id: 'B', text: 'Visible to the driver, clear of the vehicle path, and able to observe hazards' },
+      { id: 'C', text: 'Directly behind the vehicle where the driver cannot see them' },
+      { id: 'D', text: 'Beside a wheel so small movements are easier to judge' }
     ],
     correctAnswer: 'B',
-    explanation: 'Ground guides should stay about 10 yards from the vehicle whenever possible.',
-    sourceTopic: 'Ground Guide'
+    explanation: 'The guide must remain visible to the driver, stay outside the vehicle path, and maintain a position from which hazards can be observed.',
+    sourceTopic: 'Ground Guide Safety'
   },
   {
     id: 'additional-12',
     category: 'Ground Guide',
-    difficulty: 'easy',
-    question: 'Ground guides should position themselves at what angle from the front corners of the vehicle?',
+    difficulty: 'medium',
+    question: 'Before vehicle movement begins, what coordination is most important between the driver and ground guide?',
     options: [
-      { id: 'A', text: '30 degrees' },
-      { id: 'B', text: '45 degrees' },
-      { id: 'C', text: '60 degrees' },
-      { id: 'D', text: '90 degrees' }
+      { id: 'A', text: 'Agree only on the destination' },
+      { id: 'B', text: 'Confirm the signals, route, hazards, and stop procedure' },
+      { id: 'C', text: 'Let the guide choose signals after movement starts' },
+      { id: 'D', text: 'Use horn signals instead of visual signals' }
     ],
     correctAnswer: 'B',
-    explanation: 'Ground guides should position themselves at a 45-degree angle from the front corners of the vehicle.',
-    sourceTopic: 'Ground Guide'
+    explanation: 'The driver and guide must share a clear understanding of signals and the movement plan before the vehicle moves.',
+    sourceTopic: 'Ground Guide Coordination'
   },
   {
     id: 'additional-13',
@@ -199,17 +199,17 @@ export const additionalQuestions: Question[] = [
   {
     id: 'additional-14',
     category: 'Ground Guide',
-    difficulty: 'easy',
-    question: 'Which area normally requires a ground guide?',
+    difficulty: 'medium',
+    question: 'Which situation most clearly calls for a ground guide?',
     options: [
-      { id: 'A', text: 'Fuel point' },
-      { id: 'B', text: 'Motor pool' },
-      { id: 'C', text: 'Railhead' },
-      { id: 'D', text: 'All of the above' }
+      { id: 'A', text: 'Traveling on an unobstructed highway with normal visibility' },
+      { id: 'B', text: 'Backing in a congested motor pool with restricted visibility' },
+      { id: 'C', text: 'Operating a parked vehicle during a radio check' },
+      { id: 'D', text: 'Driving forward on an empty, marked training lane' }
     ],
-    correctAnswer: 'D',
-    explanation: 'Fuel points, motor pools, and railheads normally require a ground guide.',
-    sourceTopic: 'Ground Guide'
+    correctAnswer: 'B',
+    explanation: 'Congested or confined areas and situations with restricted visibility are primary conditions for using a ground guide.',
+    sourceTopic: 'Ground Guide Safety'
   },
   {
     id: 'additional-15',
@@ -348,32 +348,32 @@ export const additionalQuestions: Question[] = [
   },
   {
     id: 'additional-24',
-    category: 'PMCS',
+    category: 'DA Form 5988-E',
     difficulty: 'medium',
-    question: 'What is the primary purpose of DA Form 5987-E?',
+    question: 'During PMCS, which form should the operator use to record an equipment fault for maintenance action?',
     options: [
-      { id: 'A', text: 'Record fuel usage' },
-      { id: 'B', text: 'Equipment Maintenance and Inspection Worksheet' },
-      { id: 'C', text: 'Dispatch form' },
-      { id: 'D', text: 'Accident report' }
+      { id: 'A', text: 'DD Form 518' },
+      { id: 'B', text: 'DA Form 5988-E' },
+      { id: 'C', text: 'DA Form 5987-E' },
+      { id: 'D', text: 'SF 91' }
     ],
     correctAnswer: 'B',
-    explanation: 'DA Form 5987-E is used as an Equipment Maintenance and Inspection Worksheet.',
-    sourceTopic: 'PMCS'
+    explanation: 'DA Form 5988-E is the Equipment Maintenance and Inspection Worksheet used to document faults; DA Form 5987-E is associated with dispatch and equipment-use records.',
+    sourceTopic: 'DA Form 5988-E and dispatch records'
   },
   {
     id: 'additional-25',
-    category: 'PMCS',
+    category: 'Dispatch Procedures',
     difficulty: 'medium',
-    question: 'Which section of DA Form 5987-E contains faults and corrective actions?',
+    question: 'Which pairing correctly matches the form to its primary operator-level use?',
     options: [
-      { id: 'A', text: 'Header' },
-      { id: 'B', text: 'Maintenance Faults' },
-      { id: 'C', text: 'Dispatch Information' },
-      { id: 'D', text: 'Operator Information' }
+      { id: 'A', text: 'DA Form 5987-E — accident report' },
+      { id: 'B', text: 'DA Form 5987-E — dispatch and equipment-use record' },
+      { id: 'C', text: 'DA Form 5988-E — accident identification card' },
+      { id: 'D', text: 'SF 91 — maintenance inspection worksheet' }
     ],
     correctAnswer: 'B',
-    explanation: 'The Maintenance Faults section contains faults and corrective actions on DA Form 5987-E.',
-    sourceTopic: 'PMCS'
+    explanation: 'DA Form 5987-E supports equipment dispatch and usage; maintenance faults and corrective actions belong on DA Form 5988-E.',
+    sourceTopic: 'Dispatch and maintenance forms'
   }
 ];

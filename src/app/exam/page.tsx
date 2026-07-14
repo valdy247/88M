@@ -24,7 +24,7 @@ export default function ExamPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const requestedQuestionCount = new URLSearchParams(window.location.search).get('mode') === 'big' ? 100 : 25;
+    const requestedQuestionCount = new URLSearchParams(window.location.search).get('mode') === 'big' ? 50 : 25;
     const stored = loadExamSession();
     if (stored && stored.status === 'active' && stored.questions.length === requestedQuestionCount) {
       setSession(stored);
