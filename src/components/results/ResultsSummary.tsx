@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import type { ExamSession } from '../../types/exam';
 import type { CategoryResult } from '../../types/exam';
 
@@ -19,9 +21,11 @@ interface ResultsSummaryProps {
 }
 
 export function ResultsSummary({ session, results }: ResultsSummaryProps) {
-  const lowPerformance = [...results.categoryPerformance]
+  const [showAllFocusAreas, setShowAllFocusAreas] = useState(false);
+  const focusAreas = [...results.categoryPerformance]
+    .filter((category) => results.weakCategories.includes(category.category))
     .sort((a, b) => (a.correct / a.total) - (b.correct / b.total))
-    .slice(0, 3);
+  const visibleFocusAreas = showAllFocusAreas ? focusAreas : focusAreas.slice(0, 1);
 
   return (
     <div className="mt-8 grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
@@ -56,9 +60,6 @@ export function ResultsSummary({ session, results }: ResultsSummaryProps) {
           <span className={`rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] ${results.passed ? 'bg-emerald-500/10 text-emerald-200' : 'bg-amber-500/10 text-amber-200'}`}>
             {results.passed ? 'Passed' : 'Needs review'}
           </span>
-          <span className="rounded-full bg-slate-800 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-300">
-            {results.practiceResult}
-          </span>
         </div>
       </div>
 
@@ -66,14 +67,25 @@ export function ResultsSummary({ session, results }: ResultsSummaryProps) {
         <p className="text-sm uppercase tracking-[0.25em] text-amber-300">Focus areas</p>
         <p className="mt-3 text-xl font-semibold text-white">{results.weakCategories.length} categories to review</p>
         <div className="mt-4 space-y-3 text-sm text-slate-300">
-          {lowPerformance.map((category) => (
+          {visibleFocusAreas.map((category) => (
             <div key={category.category} className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-900/80 px-4 py-3">
               <span>{category.category}</span>
               <span className="font-semibold text-white">{category.correct}/{category.total}</span>
             </div>
           ))}
-          {results.weakCategories.length > lowPerformance.length && (
-            <p className="text-slate-400">+{results.weakCategories.length - lowPerformance.length} more categories</p>
+          {focusAreas.length === 0 && (
+            <p className="rounded-2xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-emerald-200">No focus areas needed.</p>
+          )}
+          {focusAreas.length > 1 && (
+            <button
+              type="button"
+              onClick={() => setShowAllFocusAreas((current) => !current)}
+              aria-expanded={showAllFocusAreas}
+              className="flex w-full items-center justify-between rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-left font-semibold text-slate-200 transition hover:border-slate-500"
+            >
+              <span>{showAllFocusAreas ? 'Hide other areas' : `Show ${focusAreas.length - 1} more areas`}</span>
+              <ChevronDown className={`h-4 w-4 transition-transform ${showAllFocusAreas ? 'rotate-180' : ''}`} />
+            </button>
           )}
         </div>
       </div>

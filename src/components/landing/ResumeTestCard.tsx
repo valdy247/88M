@@ -18,6 +18,8 @@ export function ResumeTestCard() {
 
   if (!session) return null;
 
+  const examHref = session.questions.length === 100 ? '/exam?mode=big' : '/exam';
+
   const timeRemainingMs = Math.max(0, session.endsAt - Date.now());
   const minutes = Math.floor(timeRemainingMs / 60000);
   const seconds = Math.floor((timeRemainingMs % 60000) / 1000)
@@ -33,7 +35,7 @@ export function ResumeTestCard() {
           <p className="mt-2 text-sm text-slate-300">Time remaining: {minutes}:{seconds}</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Link href="/exam" className="inline-flex items-center gap-2 rounded-2xl bg-amber-500 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-400">
+          <Link href={examHref} className="inline-flex items-center gap-2 rounded-2xl bg-amber-500 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-400">
             Resume Test <ArrowRight className="h-4 w-4" />
           </Link>
           <button

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, ArrowRight, Circle, Clock3, Home, ListChecks, Menu, Send, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Home, Menu, Send, X } from 'lucide-react';
 import { ExamHeader } from '../../components/exam/ExamHeader';
 import { CountdownTimer } from '../../components/exam/CountdownTimer';
 import { QuestionCard } from '../../components/exam/QuestionCard';
@@ -24,11 +24,12 @@ export default function ExamPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const requestedQuestionCount = new URLSearchParams(window.location.search).get('mode') === 'big' ? 100 : 25;
     const stored = loadExamSession();
-    if (stored && stored.status === 'active') {
+    if (stored && stored.status === 'active' && stored.questions.length === requestedQuestionCount) {
       setSession(stored);
     } else {
-      const nextSession = createExamSession(generateExam(allQuestions));
+      const nextSession = createExamSession(generateExam(allQuestions, requestedQuestionCount));
       saveExamSession(nextSession);
       setSession(nextSession);
     }
@@ -99,13 +100,13 @@ export default function ExamPage() {
   const changeIndex = (delta: number) => {
     setSession((current) => {
       if (!current) return current;
-      const nextIndex = Math.min(24, Math.max(0, current.currentQuestionIndex + delta));
+      const nextIndex = Math.min(current.questions.length - 1, Math.max(0, current.currentQuestionIndex + delta));
       return { ...current, currentQuestionIndex: nextIndex };
     });
   };
 
   const unansweredCount = session.questions.filter((question) => !session.answers[question.id]).length;
-  const answeredCount = 25 - unansweredCount;
+  const answeredCount = session.questions.length - unansweredCount;
 
   const handleSubmit = () => {
     setDialogMode('manual');
@@ -127,17 +128,9 @@ export default function ExamPage() {
 
   const discardAndRestart = () => {
     clearExamSession();
-    const nextSession = createExamSession(generateExam(allQuestions));
+    const nextSession = createExamSession(generateExam(allQuestions, session.questions.length));
     saveExamSession(nextSession);
     setSession(nextSession);
-  };
-
-  const startBigAssTest = () => {
-    clearExamSession();
-    const nextSession = createExamSession(generateExam(allQuestions, 100));
-    saveExamSession(nextSession);
-    setSession(nextSession);
-    setMenuOpen(false);
   };
 
   return (
@@ -160,17 +153,9 @@ export default function ExamPage() {
               </button>
               {menuOpen && (
                 <div className="absolute right-0 top-full mt-2 w-44 rounded-3xl border border-slate-800 bg-[#0f1317] p-3 shadow-glow">
-                  <button
-                    type="button"
-                    onClick={startBigAssTest}
-                    className="flex w-full items-center gap-2 rounded-2xl px-3 py-3 text-left text-sm font-semibold text-slate-100 transition hover:bg-slate-900"
-                  >
-                    <ListChecks className="h-4 w-4" />
-                    BIG ASS TEST
-                  </button>
                   <Link
                     href="/"
-                    className="mt-2 flex items-center gap-2 rounded-2xl px-3 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-900"
+                    className="flex items-center gap-2 rounded-2xl px-3 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-900"
                     onClick={() => setMenuOpen(false)}
                   >
                     <Home className="h-4 w-4" />

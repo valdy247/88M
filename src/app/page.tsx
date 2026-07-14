@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Timer, BookOpen } from 'lucide-react';
+import { Timer, BookOpen, ListChecks } from 'lucide-react';
 import { ResumeTestCard } from '../components/landing/ResumeTestCard';
 
 export default function HomePage() {
@@ -31,6 +31,21 @@ export default function HomePage() {
               className="inline-flex w-full items-center justify-center rounded-2xl bg-olive-600 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-olive-500"
             >
               Start Test
+            </Link>
+          </div>
+        </div>
+        <div className="rounded-3xl border border-amber-700/60 bg-amber-500/5 p-8 shadow-glow">
+          <div className="space-y-5">
+            <div className="flex items-center gap-3 text-amber-300">
+              <ListChecks className="h-5 w-5" />
+              <h2 className="text-2xl font-semibold text-white">BIG ASS TEST</h2>
+            </div>
+            <p className="text-slate-300">100 randomized questions in a separate full-length test.</p>
+            <Link
+              href="/exam?mode=big"
+              className="inline-flex w-full items-center justify-center rounded-2xl bg-amber-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-400"
+            >
+              Start BIG ASS TEST
             </Link>
           </div>
         </div>
