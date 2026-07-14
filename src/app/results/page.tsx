@@ -48,15 +48,12 @@ export default function ResultsPage() {
         <div className="rounded-3xl border border-slate-800 bg-[#111214] p-8 shadow-glow">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-amber-300">Exam complete</p>
-              <h1 className="text-3xl font-semibold text-white">Red Book Trainer results</h1>
+              <p className="text-sm uppercase tracking-[0.3em] text-amber-300">Results</p>
+              <h1 className="text-3xl font-semibold text-white">Exam complete</h1>
             </div>
             <Link href="/exam" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-800">
               <ArrowLeft className="h-4 w-4" /> Start New Test
             </Link>
-          </div>
-          <div className="mt-4 rounded-3xl border border-slate-800 bg-slate-900/80 p-4 text-sm text-slate-300">
-            <p className="font-semibold text-white">Review your missed questions below, then export them to PDF for focused study.</p>
           </div>
           <ResultsSummary session={session} results={results} />
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -80,14 +77,13 @@ export default function ResultsPage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-xl font-semibold text-white">Review Questions</h2>
-              <p className="mt-2 text-sm text-slate-300">Only missed and unanswered questions are shown by default.</p>
             </div>
             <button
               type="button"
               onClick={() => setShowAll((current) => !current)}
               className="rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500"
             >
-              {showAll ? 'Show Missed Only' : 'Review All Questions'}
+              {showAll ? 'Missed Only' : 'All Questions'}
             </button>
           </div>
           <div className="mt-6 space-y-6">

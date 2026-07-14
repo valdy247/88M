@@ -2,7 +2,7 @@ import type { Question, Category } from '../../types/question';
 import type { ExamQuestion } from '../../types/exam';
 import { shuffleArray, shuffleQuestionOptions } from './shuffle';
 
-const blueprint: Record<Category, number> = {
+const blueprint: Partial<Record<Category, number>> = {
   'Radio Procedures': 3,
   'Strip Maps': 2,
   'SALUTE Report': 2,
@@ -29,27 +29,30 @@ function pickFromPool(pool: Question[], count: number): Question[] {
   return copy.slice(0, Math.min(count, copy.length));
 }
 
-export function generateExam(questions: Question[]): ExamQuestion[] {
+export function generateExam(questions: Question[], totalQuestions = 25): ExamQuestion[] {
   const byCategory = questions.reduce<Record<Category, Question[]>>((result, question) => {
     const categoryQuestions = result[question.category] ?? [];
     return { ...result, [question.category]: [...categoryQuestions, question] };
   }, {} as Record<Category, Question[]>);
 
+  const availableQuestionCount = uniqueById(questions).length;
+  const targetCount = Math.min(totalQuestions, availableQuestionCount);
+
   let selected: Question[] = [];
 
   for (const category of Object.keys(blueprint) as Category[]) {
     const pool = byCategory[category] ?? [];
-    const required = blueprint[category];
+    const required = blueprint[category] ?? 0;
     selected = [...selected, ...pickFromPool(pool, required)];
   }
 
-  const remaining = 25 - selected.length;
+  const remaining = targetCount - selected.length;
   if (remaining > 0) {
     const available = uniqueById(questions).filter((question) => !selected.some((item) => item.id === question.id));
     selected = [...selected, ...pickFromPool(available, remaining)];
   }
 
-  selected = shuffleArray(uniqueById(selected)).slice(0, 25);
+  selected = shuffleArray(uniqueById(selected)).slice(0, targetCount);
 
   return selected.map(shuffleQuestionOptions);
 }

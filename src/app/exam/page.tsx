@@ -132,6 +132,14 @@ export default function ExamPage() {
     setSession(nextSession);
   };
 
+  const startBigAssTest = () => {
+    clearExamSession();
+    const nextSession = createExamSession(generateExam(allQuestions, 100));
+    saveExamSession(nextSession);
+    setSession(nextSession);
+    setMenuOpen(false);
+  };
+
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-6">
@@ -151,10 +159,18 @@ export default function ExamPage() {
                 {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
               {menuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-40 rounded-3xl border border-slate-800 bg-[#0f1317] p-3 shadow-glow">
+                <div className="absolute right-0 top-full mt-2 w-44 rounded-3xl border border-slate-800 bg-[#0f1317] p-3 shadow-glow">
+                  <button
+                    type="button"
+                    onClick={startBigAssTest}
+                    className="flex w-full items-center gap-2 rounded-2xl px-3 py-3 text-left text-sm font-semibold text-slate-100 transition hover:bg-slate-900"
+                  >
+                    <ListChecks className="h-4 w-4" />
+                    BIG ASS TEST
+                  </button>
                   <Link
                     href="/"
-                    className="flex items-center gap-2 rounded-2xl px-3 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-900"
+                    className="mt-2 flex items-center gap-2 rounded-2xl px-3 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-900"
                     onClick={() => setMenuOpen(false)}
                   >
                     <Home className="h-4 w-4" />
@@ -166,89 +182,75 @@ export default function ExamPage() {
           </div>
         </div>
         <ExamHeader
-          questionNumber={session.currentQuestionIndex + 1}
           totalQuestions={session.questions.length}
-          category={currentQuestion.category}
           answeredCount={answeredCount}
-          unansweredCount={unansweredCount}
         />
-        <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-          <div className="space-y-6">
-            <CountdownTimer
-              startedAt={session.startedAt}
-              endsAt={session.endsAt}
-              onExpire={() => {
-                const now = Date.now();
-                const expired = {
-                  ...session,
-                  status: 'submitted' as const,
-                  submittedAt: now,
-                };
-                saveExamSession(expired);
-                // Ensure Back goes to home after forced submit
-                router.replace('/');
-                router.push('/results');
-              }}
-            />
-            <QuestionCard
-              question={currentQuestion}
-              selectedAnswer={session.answers[currentQuestion.id] ?? null}
-              onSelect={(answerId) => handleAnswer(currentQuestion.id, answerId)}
-            />
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex gap-3">
+        <div className="space-y-6">
+          <QuestionCard
+            question={currentQuestion}
+            selectedAnswer={session.answers[currentQuestion.id] ?? null}
+            onSelect={(answerId) => handleAnswer(currentQuestion.id, answerId)}
+          />
+          <CountdownTimer
+            startedAt={session.startedAt}
+            endsAt={session.endsAt}
+            onExpire={() => {
+              const now = Date.now();
+              const expired = {
+                ...session,
+                status: 'submitted' as const,
+                submittedAt: now,
+              };
+              saveExamSession(expired);
+              // Ensure Back goes to home after forced submit
+              router.replace('/');
+              router.push('/results');
+            }}
+          />
+          <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+            <div className="space-y-6">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => changeIndex(-1)}
+                    disabled={session.currentQuestionIndex === 0}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-700 bg-[#101214] px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500 disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    <ArrowLeft className="h-4 w-4" /> Previous
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => changeIndex(1)}
+                    disabled={session.currentQuestionIndex === session.questions.length - 1}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-700 bg-[#101214] px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500 disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    Next <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
                 <button
                   type="button"
-                  onClick={() => changeIndex(-1)}
-                  disabled={session.currentQuestionIndex === 0}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-700 bg-[#101214] px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500 disabled:cursor-not-allowed disabled:opacity-40"
+                  onClick={handleSubmit}
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-400"
                 >
-                  <ArrowLeft className="h-4 w-4" /> Previous
-                </button>
-                <button
-                  type="button"
-                  onClick={() => changeIndex(1)}
-                  disabled={session.currentQuestionIndex === session.questions.length - 1}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-700 bg-[#101214] px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500 disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  Next <ArrowRight className="h-4 w-4" />
+                  <Send className="h-4 w-4" /> Submit Test
                 </button>
               </div>
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-400"
-              >
-                <Send className="h-4 w-4" /> Submit Test
-              </button>
             </div>
+            <aside className="space-y-6 rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow">
+              <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 text-sm leading-6 text-slate-300">
+                <p className="font-semibold text-white">Session controls</p>
+                <p className="mt-3">You can refresh the page and resume this exam without losing progress.</p>
+                <button
+                  type="button"
+                  onClick={discardAndRestart}
+                  className="mt-4 w-full rounded-2xl border border-slate-700 bg-[#101214] px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500"
+                >
+                  Discard and start new test
+                </button>
+              </div>
+            </aside>
           </div>
-          <aside className="space-y-6 rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow">
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5">
-              <div className="flex items-center gap-2 text-amber-300">
-                <ListChecks className="h-4 w-4" />
-                <span className="text-sm font-semibold">Progress</span>
-              </div>
-              <div className="mt-4 h-3 overflow-hidden rounded-full bg-slate-800">
-                <div
-                  className="h-full rounded-full bg-olive-600 transition-all"
-                  style={{ width: `${((answeredCount / 25) * 100).toFixed(0)}%` }}
-                />
-              </div>
-              <p className="mt-3 text-sm text-slate-300">Answered {answeredCount} of 25 questions.</p>
-            </div>
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 text-sm leading-6 text-slate-300">
-              <p className="font-semibold text-white">Session controls</p>
-              <p className="mt-3">You can refresh the page and resume this exam without losing progress.</p>
-              <button
-                type="button"
-                onClick={discardAndRestart}
-                className="mt-4 w-full rounded-2xl border border-slate-700 bg-[#101214] px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500"
-              >
-                Discard and start new test
-              </button>
-            </div>
-          </aside>
         </div>
       </div>
       <SubmitTestDialog

@@ -26,8 +26,7 @@ export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRem
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4">
       <div className="w-full max-w-xl rounded-3xl border border-slate-700 bg-[#0f1317] p-6 shadow-glow">
-        <h2 className="text-xl font-semibold text-white">Submit Test</h2>
-        <p className="mt-3 text-slate-300">You are about to submit your exam. Review the current status before continuing.</p>
+        <h2 className="text-xl font-semibold text-white">Submit test?</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 text-sm text-slate-300">
             <p className="text-slate-100">Answered</p>
@@ -38,7 +37,7 @@ export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRem
             <p className="mt-2 text-2xl font-semibold text-white">{unansweredCount}</p>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 text-sm text-slate-300">
-            <p className="text-slate-100">Time remaining</p>
+            <p className="text-slate-100">Time left</p>
             <p className="mt-2 text-2xl font-semibold text-white">{formatRemaining(timeRemaining.endsAt)}</p>
           </div>
         </div>
@@ -48,23 +47,22 @@ export function SubmitTestDialog({ open, answeredCount, unansweredCount, timeRem
             onClick={onCancel}
             className="rounded-2xl border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500"
           >
-            Continue Test
+            Keep going
           </button>
           <button
             type="button"
             onClick={onConfirm}
             className="rounded-2xl bg-amber-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-400"
           >
-            Submit Test
+            Submit
           </button>
-          {/* Optional review button (shown when handler provided) */}
           {showReview && typeof onReview === 'function' && (
             <button
               type="button"
               onClick={onReview}
               className="rounded-2xl border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500"
             >
-              Review Answers
+              Review
             </button>
           )}
         </div>

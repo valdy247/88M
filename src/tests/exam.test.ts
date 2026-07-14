@@ -15,6 +15,13 @@ describe('Exam utilities', () => {
     expect(ids.size).toBe(25);
   });
 
+  test('selects exactly 100 unique questions for BIG ASS TEST', () => {
+    const exam = generateExam(allQuestions, 100);
+    expect(exam).toHaveLength(100);
+    const ids = new Set(exam.map((question) => question.id));
+    expect(ids.size).toBe(100);
+  });
+
   test('selects a balanced category set with no duplicates', () => {
     const exam = generateExam(allQuestions);
     const categoryCounts = exam.reduce<Record<string, number>>((acc, question) => {
