@@ -59,6 +59,15 @@ describe('Exam utilities', () => {
     expect(categories['Cargo Loading']).toBe(1);
   });
 
+  test('uses the official convoy flag colors', () => {
+    const flagQuestion = allQuestions.find((question) => question.id === 'convoy-review-07');
+
+    expect(flagQuestion).toBeDefined();
+    expect(flagQuestion?.options.find((option) => option.id === flagQuestion.correctAnswer)?.text).toBe(
+      'Lead blue; trail green'
+    );
+  });
+
   test('shuffling preserves the correct answer mapping', () => {
     const original = allQuestions[0];
     const shuffled = shuffleQuestionOptions(original);
