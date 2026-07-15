@@ -17,7 +17,6 @@ export type Category =
   | 'Ground Guide'
   | 'Hand Signals'
   | 'Adverse Driving'
-  | '9-Line MEDEVAC'
   | 'Cargo Loading';
 
 export interface QuestionOption {

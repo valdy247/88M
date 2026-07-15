@@ -46,6 +46,5 @@ export const questionCategories = {
   'Ground Guide': additionalQuestions.filter((question) => question.category === 'Ground Guide'),
   'Hand Signals': additionalQuestions.filter((question) => question.category === 'Hand Signals'),
   'Adverse Driving': additionalQuestions.filter((question) => question.category === 'Adverse Driving'),
-  '9-Line MEDEVAC': operationalReviewQuestions.filter((question) => question.category === '9-Line MEDEVAC'),
   'Cargo Loading': cargoLoadingQuestions
 } as const;

@@ -6,18 +6,17 @@ const blueprint: Partial<Record<Category, number>> = {
   'Radio Procedures': 2,
   'Strip Maps': 1,
   'SALUTE Report': 1,
-  'Accident Forms': 1,
+  'Accident Forms': 2,
   'PMCS': 2,
   'DA Form 5988-E': 1,
   'Dispatch Procedures': 1,
   'Technical Manuals': 1,
   'Ground Guide Procedures': 2,
   'Hand and Arm Signals': 2,
-  'Convoy Operations': 2,
+  'Convoy Operations': 3,
   'Column Formations': 3,
   'March Discipline': 1,
   'Adverse Driving': 2,
-  '9-Line MEDEVAC': 2,
   'Cargo Loading': 1
 };
 
