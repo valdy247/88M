@@ -35,15 +35,15 @@ export const pmcs: Question[] = [
     id: 'pmcs-03',
     category: 'PMCS',
     difficulty: 'medium',
-    question: 'Which PMCS interval is performed before operating equipment?',
+    question: 'A vehicle is being prepared for operation, and its required weekly inspection is also due. Which PMCS checks should the operator complete?',
     options: [
-      { id: 'A', text: 'Weekly' },
-      { id: 'B', text: 'Before' },
-      { id: 'C', text: 'Monthly' },
-      { id: 'D', text: 'After' }
+      { id: 'A', text: 'Before checks only; weekly checks replace them' },
+      { id: 'B', text: 'Both the required Before and Weekly checks' },
+      { id: 'C', text: 'After checks followed by Monthly checks' },
+      { id: 'D', text: 'Weekly checks only; no operational checks are needed' }
     ],
     correctAnswer: 'B',
-    explanation: 'A before check is performed before operating equipment.',
+    explanation: 'When equipment is being prepared for use and the weekly interval is due, the operator completes both the applicable Before and Weekly checks.',
     sourceTopic: 'PMCS'
   },
   {
@@ -80,15 +80,15 @@ export const pmcs: Question[] = [
     id: 'pmcs-06',
     category: 'PMCS',
     difficulty: 'medium',
-    question: 'Which check should be performed during equipment operation?',
+    question: 'While the vehicle is moving, a gauge enters an abnormal range. Which PMCS responsibility applies at that moment?',
     options: [
-      { id: 'A', text: 'After' },
-      { id: 'B', text: 'Before' },
-      { id: 'C', text: 'During' },
-      { id: 'D', text: 'Weekly' }
+      { id: 'A', text: 'Wait for the After check before observing the gauge again' },
+      { id: 'B', text: 'Treat it only as a Weekly inspection item' },
+      { id: 'C', text: 'Apply the During checks and respond according to the TM' },
+      { id: 'D', text: 'Continue normally because Before checks were completed' }
     ],
     correctAnswer: 'C',
-    explanation: 'A during check is performed while operating the equipment.',
+    explanation: 'During checks include monitoring equipment while it operates and responding to abnormal indications according to the current TM.',
     sourceTopic: 'PMCS'
   },
   {
@@ -155,15 +155,15 @@ export const pmcs: Question[] = [
     id: 'pmcs-11',
     category: 'PMCS',
     difficulty: 'medium',
-    question: 'When operating equipment for the first time, which checks are performed?',
+    question: 'An operator identifies a Class II leak during PMCS. What determines whether the equipment may continue to operate?',
     options: [
-      { id: 'A', text: 'After and monthly' },
-      { id: 'B', text: 'Before and weekly' },
-      { id: 'C', text: 'Daily and annual' },
-      { id: 'D', text: 'Only weekly' }
+      { id: 'A', text: 'Class II leaks are always allowed' },
+      { id: 'B', text: 'The limits and instructions in the applicable technical manual' },
+      { id: 'C', text: 'The operator’s personal judgment only' },
+      { id: 'D', text: 'Whether the leak appeared during a Weekly check' }
     ],
     correctAnswer: 'B',
-    explanation: 'First-time operation requires both before and weekly checks as appropriate.',
+    explanation: 'Leak classification alone does not authorize operation; the applicable TM defines allowable limits and equipment status.',
     sourceTopic: 'PMCS'
   },
   {
