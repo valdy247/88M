@@ -68,6 +68,12 @@ describe('Exam utilities', () => {
     );
   });
 
+  test('contains no 9-Line MEDEVAC material in the test question bank', () => {
+    const serializedQuestionBank = JSON.stringify(allQuestions);
+
+    expect(serializedQuestionBank).not.toMatch(/9[ -]?line|medevac|patient nationality and status/i);
+  });
+
   test('shuffling preserves the correct answer mapping', () => {
     const original = allQuestions[0];
     const shuffled = shuffleQuestionOptions(original);

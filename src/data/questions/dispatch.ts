@@ -7,7 +7,7 @@ export const dispatchProcedures: Question[] = [
     difficulty: 'easy',
     question: 'What is DA Form 5987-E associated with?',
     options: [
-      { id: 'A', text: 'MEDEVAC requests' },
+      { id: 'A', text: 'Convoy clearance requests' },
       { id: 'B', text: 'Equipment dispatch and usage records' },
       { id: 'C', text: 'Accident identification cards' },
       { id: 'D', text: 'Equipment maintenance worksheets' }
@@ -22,7 +22,7 @@ export const dispatchProcedures: Question[] = [
     difficulty: 'medium',
     question: 'Which information is typically entered on DA Form 5987-E?',
     options: [
-      { id: 'A', text: 'Patient nationality and status' },
+      { id: 'A', text: 'Convoy route classification' },
       { id: 'B', text: 'Operator information and equipment identification' },
       { id: 'C', text: 'Route checkpoints and landmarks' },
       { id: 'D', text: 'Radio call signs and frequencies' }
