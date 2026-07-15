@@ -50,11 +50,12 @@ describe('Exam utilities', () => {
       return acc;
     }, {});
 
-    expect(categories['Convoy Operations']).toBe(3);
+    expect(categories['Convoy Operations']).toBe(2);
     expect(categories['Column Formations']).toBe(3);
     expect(categories['March Discipline']).toBe(1);
     expect(categories['Adverse Driving']).toBe(2);
     expect(categories['9-Line MEDEVAC']).toBe(2);
+    expect(categories['Cargo Loading']).toBe(1);
   });
 
   test('shuffling preserves the correct answer mapping', () => {

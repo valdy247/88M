@@ -20,14 +20,14 @@ export const radioProcedures: Question[] = [
     id: 'radio-02',
     category: 'Radio Procedures',
     difficulty: 'easy',
-    question: 'Which radio term should you use to request a retransmission of a message?',
+    question: 'Which proword is used if you do not understand a radio transmission?',
     options: [
-      { id: 'A', text: 'Repeat' },
-      { id: 'B', text: 'Say Again' },
-      { id: 'C', text: 'Over' },
-      { id: 'D', text: 'Out' }
+      { id: 'A', text: 'What?' },
+      { id: 'B', text: 'Repeat' },
+      { id: 'C', text: 'Say Again' },
+      { id: 'D', text: 'Over' }
     ],
-    correctAnswer: 'B',
+    correctAnswer: 'C',
     explanation: 'Say Again is the correct proword for requesting a retransmission.',
     sourceTopic: 'Radio Procedures'
   },
@@ -140,15 +140,15 @@ export const radioProcedures: Question[] = [
     id: 'radio-10',
     category: 'Radio Procedures',
     difficulty: 'medium',
-    question: 'When should radio transmissions be limited to about ten seconds before pausing?',
+    question: 'How long should you speak on the radio before pausing for 2–3 seconds?',
     options: [
-      { id: 'A', text: 'Only during emergencies' },
-      { id: 'B', text: 'Whenever you are speaking on the radio' },
-      { id: 'C', text: 'When the net is not secure' },
-      { id: 'D', text: 'Only for command messages' }
+      { id: 'A', text: '5 seconds' },
+      { id: 'B', text: '10 seconds' },
+      { id: 'C', text: '30 seconds' },
+      { id: 'D', text: '1 minute' }
     ],
-    correctAnswer: 'B',
-    explanation: 'Transmissions should be short and paused often to allow others to use the net.',
+    correctAnswer: 'A',
+    explanation: 'Speak for about five seconds, then pause for two to three seconds so urgent traffic can break in.',
     sourceTopic: 'Radio Procedures'
   },
   {
@@ -170,15 +170,15 @@ export const radioProcedures: Question[] = [
     id: 'radio-12',
     category: 'Radio Procedures',
     difficulty: 'medium',
-    question: 'Which factor is not part of RSVP in radio voice procedures?',
+    question: 'In the acronym RSVP for radio communications, what does the “V” stand for?',
     options: [
-      { id: 'A', text: 'Rhythm' },
-      { id: 'B', text: 'Speed' },
+      { id: 'A', text: 'Variety' },
+      { id: 'B', text: 'Velocity' },
       { id: 'C', text: 'Volume' },
-      { id: 'D', text: 'Silence' }
+      { id: 'D', text: 'Verification' }
     ],
-    correctAnswer: 'D',
-    explanation: 'RSVP includes Rhythm, Speed, Volume, and Pitch, not Silence.',
+    correctAnswer: 'C',
+    explanation: 'The V in RSVP stands for Volume.',
     sourceTopic: 'Radio Procedures'
   },
   {

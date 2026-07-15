@@ -18,7 +18,8 @@ const validCategorySet: Set<Category> = new Set([
   'Ground Guide',
   'Hand Signals',
   'Adverse Driving',
-  '9-Line MEDEVAC'
+  '9-Line MEDEVAC',
+  'Cargo Loading'
 ]);
 
 const validDifficultySet: Set<Difficulty> = new Set(['easy', 'medium', 'hard']);

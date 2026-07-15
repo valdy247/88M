@@ -110,15 +110,15 @@ export const stripMaps: Question[] = [
     id: 'strip-08',
     category: 'Strip Maps',
     difficulty: 'hard',
-    question: 'Why are strip maps not required to be drawn to scale?',
+    question: 'Which statement is not true for a strip map?',
     options: [
-      { id: 'A', text: 'They focus on useful route information rather than exact distances' },
-      { id: 'B', text: 'Scale is only required on operational orders' },
-      { id: 'C', text: 'They are used only for emergency evacuation' },
-      { id: 'D', text: 'Scaling would make them too large to carry' }
+      { id: 'A', text: 'It shows landmarks' },
+      { id: 'B', text: 'It must be drawn to scale' },
+      { id: 'C', text: 'It shows North orientation' },
+      { id: 'D', text: 'It lists the distance between points' }
     ],
-    correctAnswer: 'A',
-    explanation: 'Strip maps are meant to show useful route features and directions, not scale accuracy.',
+    correctAnswer: 'B',
+    explanation: 'A strip map should show useful route information, but it is not required to be drawn to scale.',
     sourceTopic: 'Strip Maps'
   },
   {
@@ -179,6 +179,21 @@ export const stripMaps: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: 'Distance between points is a useful orientation detail on a strip map.',
+    sourceTopic: 'Strip Maps'
+  },
+  {
+    id: 'strip-13',
+    category: 'Strip Maps',
+    difficulty: 'medium',
+    question: 'On a strip map, a solid-line road indicates what type of road?',
+    options: [
+      { id: 'A', text: 'Secondary road' },
+      { id: 'B', text: 'Primary road' },
+      { id: 'C', text: 'Dirt road' },
+      { id: 'D', text: 'Railroad' }
+    ],
+    correctAnswer: 'B',
+    explanation: 'In the provided strip-map material, a solid-line road represents a primary road.',
     sourceTopic: 'Strip Maps'
   }
 ];

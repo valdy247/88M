@@ -13,11 +13,12 @@ const blueprint: Partial<Record<Category, number>> = {
   'Technical Manuals': 1,
   'Ground Guide Procedures': 2,
   'Hand and Arm Signals': 2,
-  'Convoy Operations': 3,
+  'Convoy Operations': 2,
   'Column Formations': 3,
   'March Discipline': 1,
   'Adverse Driving': 2,
-  '9-Line MEDEVAC': 2
+  '9-Line MEDEVAC': 2,
+  'Cargo Loading': 1
 };
 
 function uniqueById(items: Question[]): Question[] {

@@ -5,15 +5,15 @@ export const accidentForms: Question[] = [
     id: 'accident-01',
     category: 'Accident Forms',
     difficulty: 'easy',
-    question: 'What is the purpose of SF 91?',
+    question: 'What form is used when involved in an accident with a Department of Defense vehicle?',
     options: [
-      { id: 'A', text: 'Accident identification card' },
-      { id: 'B', text: 'Motor vehicle accident report' },
-      { id: 'C', text: 'Equipment dispatch record' },
-      { id: 'D', text: 'Maintenance inspection worksheet' }
+      { id: 'A', text: 'SF 91' },
+      { id: 'B', text: 'DD Form 518' },
+      { id: 'C', text: 'DA Form 2404' },
+      { id: 'D', text: 'DD Form 1348' }
     ],
-    correctAnswer: 'B',
-    explanation: 'SF 91 is the motor vehicle accident report.',
+    correctAnswer: 'A',
+    explanation: 'SF 91 is the Motor Vehicle Accident Report used to document an accident involving a government vehicle.',
     sourceTopic: 'Accident Forms'
   },
   {
@@ -179,6 +179,36 @@ export const accidentForms: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: 'The operator should record witnesses and relevant facts if available.',
+    sourceTopic: 'Accident Forms'
+  },
+  {
+    id: 'accident-13',
+    category: 'Accident Forms',
+    difficulty: 'medium',
+    question: 'When is the only time an operator is authorized to leave the scene of an accident?',
+    options: [
+      { id: 'A', text: 'When the operator is tired' },
+      { id: 'B', text: 'When under definite orders not to stop' },
+      { id: 'C', text: 'When weather conditions worsen' },
+      { id: 'D', text: 'When the damage appears minor' }
+    ],
+    correctAnswer: 'B',
+    explanation: 'The study material authorizes leaving the scene only when the operator is under definite orders not to stop.',
+    sourceTopic: 'Accident Forms'
+  },
+  {
+    id: 'accident-14',
+    category: 'Accident Forms',
+    difficulty: 'medium',
+    question: 'Which sections of SF 91 are completed by the operator?',
+    options: [
+      { id: 'A', text: 'Sections I–IX' },
+      { id: 'B', text: 'The entire form' },
+      { id: 'C', text: 'Only the signature block' },
+      { id: 'D', text: 'Section X only' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'The operator completes Sections I through IX; the supervisor completes the applicable supervisory items.',
     sourceTopic: 'Accident Forms'
   }
 ];

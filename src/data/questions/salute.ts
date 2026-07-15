@@ -65,12 +65,12 @@ export const saluteReport: Question[] = [
     id: 'salute-05',
     category: 'SALUTE Report',
     difficulty: 'medium',
-    question: 'Which SALUTE element is not part of the acronym?',
+    question: 'Which piece of information is not included in a SALUTE report?',
     options: [
-      { id: 'A', text: 'Time' },
-      { id: 'B', text: 'Equipment' },
+      { id: 'A', text: 'Size' },
+      { id: 'B', text: 'Location' },
       { id: 'C', text: 'Weather' },
-      { id: 'D', text: 'Location' }
+      { id: 'D', text: 'Time' }
     ],
     correctAnswer: 'C',
     explanation: 'Weather is not part of SALUTE; the acronym includes Size, Activity, Location, Unit, Time, Equipment.',
