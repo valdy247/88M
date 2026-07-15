@@ -110,12 +110,12 @@ export const handArmSignals: Question[] = [
     id: 'signal-08',
     category: 'Hand and Arm Signals',
     difficulty: 'medium',
-    question: 'Which signal tells the driver to stop the engine?',
+    question: 'A ground guide needs the driver to shut down the engine. Which hand-and-arm movement should the guide use?',
     options: [
-      { id: 'A', text: 'Move Forward' },
-      { id: 'B', text: 'Stop Engine' },
-      { id: 'C', text: 'Increase Speed' },
-      { id: 'D', text: 'Slow Down' }
+      { id: 'A', text: 'Extend one arm with the palm down and move it downward several times' },
+      { id: 'B', text: 'Extend one arm parallel to the ground and move it across the body in a throat-cutting motion' },
+      { id: 'C', text: 'Raise a fist to shoulder level and move it rapidly up and down' },
+      { id: 'D', text: 'Move one arm in a circular cranking motion in front of the body' }
     ],
     correctAnswer: 'B',
     explanation: 'Stop Engine is signaled by extending the arm parallel to the ground and moving it across the body in a throat-cutting motion.',
