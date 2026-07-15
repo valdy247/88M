@@ -17,7 +17,8 @@ const validCategorySet: Set<Category> = new Set([
   'March Discipline',
   'Ground Guide',
   'Hand Signals',
-  'Adverse Driving'
+  'Adverse Driving',
+  '9-Line MEDEVAC'
 ]);
 
 const validDifficultySet: Set<Difficulty> = new Set(['easy', 'medium', 'hard']);

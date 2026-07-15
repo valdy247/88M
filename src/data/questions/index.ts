@@ -9,6 +9,7 @@ import { saluteReport } from './salute';
 import { stripMaps } from './strip-maps';
 import { technicalManuals } from './technical-manuals';
 import { additionalQuestions } from './additional';
+import { operationalReviewQuestions } from './operational-review';
 import type { Question } from '../../types/question';
 
 export const allQuestions: Question[] = [
@@ -22,7 +23,8 @@ export const allQuestions: Question[] = [
   ...technicalManuals,
   ...groundGuides,
   ...handArmSignals,
-  ...additionalQuestions
+  ...additionalQuestions,
+  ...operationalReviewQuestions
 ];
 
 export const questionCategories = {
@@ -41,5 +43,6 @@ export const questionCategories = {
   'March Discipline': additionalQuestions.filter((question) => question.category === 'March Discipline'),
   'Ground Guide': additionalQuestions.filter((question) => question.category === 'Ground Guide'),
   'Hand Signals': additionalQuestions.filter((question) => question.category === 'Hand Signals'),
-  'Adverse Driving': additionalQuestions.filter((question) => question.category === 'Adverse Driving')
+  'Adverse Driving': additionalQuestions.filter((question) => question.category === 'Adverse Driving'),
+  '9-Line MEDEVAC': operationalReviewQuestions.filter((question) => question.category === '9-Line MEDEVAC')
 } as const;

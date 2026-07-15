@@ -16,7 +16,8 @@ export type Category =
   | 'March Discipline'
   | 'Ground Guide'
   | 'Hand Signals'
-  | 'Adverse Driving';
+  | 'Adverse Driving'
+  | '9-Line MEDEVAC';
 
 export interface QuestionOption {
   id: AnswerId;

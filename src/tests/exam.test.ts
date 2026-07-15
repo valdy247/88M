@@ -39,9 +39,22 @@ describe('Exam utilities', () => {
       return acc;
     }, {});
 
-    expect(counts.medium).toBeGreaterThan(size / 2);
-    expect(counts.easy).toBeLessThanOrEqual(Math.ceil(size * 0.3));
-    expect(counts.hard).toBeLessThanOrEqual(Math.ceil(size * 0.2));
+    expect(counts.medium ?? 0).toBeGreaterThan(size / 2);
+    expect(counts.easy ?? 0).toBeLessThanOrEqual(Math.ceil(size * 0.3));
+    expect(counts.hard ?? 0).toBeLessThanOrEqual(Math.ceil(size * 0.2));
+  });
+
+  test('regular exams always cover the operational topics represented in flashcards', () => {
+    const categories = generateExam(allQuestions).reduce<Record<string, number>>((acc, question) => {
+      acc[question.category] = (acc[question.category] ?? 0) + 1;
+      return acc;
+    }, {});
+
+    expect(categories['Convoy Operations']).toBe(3);
+    expect(categories['Column Formations']).toBe(3);
+    expect(categories['March Discipline']).toBe(1);
+    expect(categories['Adverse Driving']).toBe(2);
+    expect(categories['9-Line MEDEVAC']).toBe(2);
   });
 
   test('shuffling preserves the correct answer mapping', () => {

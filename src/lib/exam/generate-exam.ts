@@ -3,16 +3,21 @@ import type { ExamQuestion } from '../../types/exam';
 import { shuffleArray, shuffleQuestionOptions } from './shuffle';
 
 const blueprint: Partial<Record<Category, number>> = {
-  'Radio Procedures': 3,
-  'Strip Maps': 2,
-  'SALUTE Report': 2,
-  'Accident Forms': 3,
-  'PMCS': 3,
-  'DA Form 5988-E': 2,
+  'Radio Procedures': 2,
+  'Strip Maps': 1,
+  'SALUTE Report': 1,
+  'Accident Forms': 1,
+  'PMCS': 2,
+  'DA Form 5988-E': 1,
   'Dispatch Procedures': 1,
   'Technical Manuals': 1,
-  'Ground Guide Procedures': 3,
-  'Hand and Arm Signals': 2
+  'Ground Guide Procedures': 2,
+  'Hand and Arm Signals': 2,
+  'Convoy Operations': 3,
+  'Column Formations': 3,
+  'March Discipline': 1,
+  'Adverse Driving': 2,
+  '9-Line MEDEVAC': 2
 };
 
 function uniqueById(items: Question[]): Question[] {
