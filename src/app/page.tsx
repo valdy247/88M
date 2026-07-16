@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Timer, BookOpen, ListChecks, Layers3 } from 'lucide-react';
+import { Timer, BookOpen, ListChecks, Layers3, Search } from 'lucide-react';
 import { ResumeTestCard } from '../components/landing/ResumeTestCard';
 import { flashcards } from '../data/flashcards';
 
@@ -70,6 +70,13 @@ export default function HomePage() {
           <p className="font-semibold text-white">Disclaimer</p>
           <p className="mt-2">Unofficial independent study tool. Not affiliated with, endorsed by, or approved by the U.S. Army or Department of Defense. Always verify using current authorized training materials.</p>
         </div>
+        <Link
+          href="/keywords"
+          className="flex w-full items-center justify-between rounded-3xl border border-slate-800 bg-[#111214] p-6 text-white shadow-glow transition hover:border-amber-500/70 hover:bg-slate-900"
+        >
+          <span className="text-lg font-semibold">Key Words</span>
+          <Search className="h-5 w-5 text-amber-300" />
+        </Link>
       </section>
     </main>
   );
