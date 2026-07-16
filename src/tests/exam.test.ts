@@ -111,6 +111,23 @@ describe('Exam utilities', () => {
     }
   });
 
+  test('includes the supplied technical-manual and PMCS page topics', () => {
+    const pageTopicIds = [
+      'tm-07',
+      'tm-08',
+      'tm-09',
+      'tm-10',
+      'tm-11',
+      'pmcs-15',
+      'pmcs-16',
+      'pmcs-17'
+    ];
+
+    for (const questionId of pageTopicIds) {
+      expect(allQuestions.some((question) => question.id === questionId)).toBe(true);
+    }
+  });
+
   test('shuffling preserves the correct answer mapping', () => {
     const original = allQuestions[0];
     const shuffled = shuffleQuestionOptions(original);

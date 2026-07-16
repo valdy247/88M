@@ -210,5 +210,50 @@ export const pmcs: Question[] = [
     correctAnswer: 'C',
     explanation: 'Annual is not typically listed as a common PMCS interval; before, during, after, weekly, and monthly are.',
     sourceTopic: 'PMCS'
+  },
+  {
+    id: 'pmcs-15',
+    category: 'PMCS',
+    difficulty: 'medium',
+    question: 'Which description identifies a Class I fluid leak?',
+    options: [
+      { id: 'A', text: 'Wetness or discoloration without drops forming' },
+      { id: 'B', text: 'Drops forming but not falling' },
+      { id: 'C', text: 'Drops falling from the checked item' },
+      { id: 'D', text: 'A dry stain with no current seepage' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'Class I leakage is seepage shown by wetness or discoloration that is not great enough to form drops.',
+    sourceTopic: 'PMCS Leak Classes'
+  },
+  {
+    id: 'pmcs-16',
+    category: 'PMCS',
+    difficulty: 'hard',
+    question: 'Which statement correctly applies the Red Book guidance for minor Class I or Class II leakage?',
+    options: [
+      { id: 'A', text: 'Operation may be allowed within TM limits, except fuel leakage is not treated as allowable minor leakage' },
+      { id: 'B', text: 'Every Class I or Class II leak automatically permits operation' },
+      { id: 'C', text: 'Fuel leaks are acceptable if no drops fall' },
+      { id: 'D', text: 'Leak class never affects equipment status' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'Minor Class I or II leakage may be permitted only within applicable TM limits; fuel leakage is an exception and must be treated as a fault.',
+    sourceTopic: 'PMCS Leak Classes'
+  },
+  {
+    id: 'pmcs-17',
+    category: 'PMCS',
+    difficulty: 'medium',
+    question: 'Which list best describes the operator-level PMCS process shown in the Red Book?',
+    options: [
+      { id: 'A', text: 'Inspect, record faults, clean, service, and perform authorized repairs' },
+      { id: 'B', text: 'Inspect only and leave all documentation to maintenance' },
+      { id: 'C', text: 'Dispatch, load cargo, and prepare accident reports' },
+      { id: 'D', text: 'Replace every component showing normal wear' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'Operator PMCS includes inspecting, recording maintenance faults, cleaning, servicing, and performing repairs authorized at operator level.',
+    sourceTopic: 'PMCS Process'
   }
 ];

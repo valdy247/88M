@@ -90,5 +90,80 @@ export const technicalManuals: Question[] = [
     correctAnswer: 'B',
     explanation: 'Manual chapter numbers vary and operators should use the current authorized manual.',
     sourceTopic: 'Technical Manuals'
+  },
+  {
+    id: 'tm-07',
+    category: 'Technical Manuals',
+    difficulty: 'medium',
+    question: 'In the example TM number 9-2320-345-10, what does the first number “9” identify?',
+    options: [
+      { id: 'A', text: 'The Ordnance branch or subject area' },
+      { id: 'B', text: 'The vehicle model year' },
+      { id: 'C', text: 'The number of maintenance chapters' },
+      { id: 'D', text: 'The vehicle payload class' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'In the Red Book numbering example, 9 identifies the Ordnance branch or subject area.',
+    sourceTopic: 'Technical Manual Numbering'
+  },
+  {
+    id: 'tm-08',
+    category: 'Technical Manuals',
+    difficulty: 'medium',
+    question: 'In TM 9-2320-345-10, what does “2320” identify?',
+    options: [
+      { id: 'A', text: 'The Army supply category for engine-powered wheeled vehicles' },
+      { id: 'B', text: 'The operator maintenance level' },
+      { id: 'C', text: 'The chapter containing PMCS' },
+      { id: 'D', text: 'The vehicle serial number' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'The number 2320 is the supply category for engine-powered wheeled vehicles in the supplied numbering example.',
+    sourceTopic: 'Technical Manual Numbering'
+  },
+  {
+    id: 'tm-09',
+    category: 'Technical Manuals',
+    difficulty: 'medium',
+    question: 'What does “345” represent in the example TM 9-2320-345-10?',
+    options: [
+      { id: 'A', text: 'The designator for the specific vehicle model' },
+      { id: 'B', text: 'The maximum vehicle speed' },
+      { id: 'C', text: 'The supply branch' },
+      { id: 'D', text: 'The operator maintenance level' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'In the supplied example, 345 is the designator assigned to the specific vehicle model.',
+    sourceTopic: 'Technical Manual Numbering'
+  },
+  {
+    id: 'tm-10',
+    category: 'Technical Manuals',
+    difficulty: 'medium',
+    question: 'What does the final “10” indicate in TM 9-2320-345-10?',
+    options: [
+      { id: 'A', text: 'Operator-level maintenance instructions' },
+      { id: 'B', text: 'Ten authorized vehicle operators' },
+      { id: 'C', text: 'A ten-year service interval' },
+      { id: 'D', text: 'The tenth model in the vehicle series' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'The final 10 identifies an operator-level technical manual.',
+    sourceTopic: 'Technical Manual Numbering'
+  },
+  {
+    id: 'tm-11',
+    category: 'Technical Manuals',
+    difficulty: 'hard',
+    question: 'For the specific manual layout shown in the Red Book example, which chapter contains PMCS?',
+    options: [
+      { id: 'A', text: 'Chapter 2' },
+      { id: 'B', text: 'Chapter 3' },
+      { id: 'C', text: 'Chapter 4' },
+      { id: 'D', text: 'Chapter 6' }
+    ],
+    correctAnswer: 'C',
+    explanation: 'The supplied example places Preventive Maintenance Checks and Services in Chapter 4; chapter locations must still be verified in the applicable current TM.',
+    sourceTopic: 'Technical Manual Chapters'
   }
 ];
