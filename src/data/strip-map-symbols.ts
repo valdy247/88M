@@ -35,7 +35,7 @@ export const stripMapSymbolCards: StripMapSymbolCard[] = [
   { id: 'sms-14', name: 'Impassable Section of Road', description: 'Diagonal obstruction marks across a road identify an impassable section.', kind: 'road', variant: 'impassable' },
   { id: 'sms-15', name: 'Main Supply Route', description: 'The route is marked MSR to identify a main supply route.', kind: 'road', variant: 'msr', label: 'MSR' },
   { id: 'sms-16', name: 'Single-Track Railroad — Broad Gauge', description: 'A single rail line with long cross ties represents broad gauge.', kind: 'railroad', variant: 'single-broad' },
-  { id: 'sms-17', name: 'Single-Track Railroad — Narrow Gauge', description: 'A single rail line with short cross ties represents narrow gauge.', kind: 'railroad', variant: 'single-narrow' },
+  { id: 'sms-17', name: 'Single-Track Railroad — Narrow Gauge', description: 'A single rail line with short ties extending from one side represents narrow gauge.', kind: 'railroad', variant: 'single-narrow' },
   { id: 'sms-18', name: 'Double-Track Railroad — Standard Gauge', description: 'Two rail lines identify a double-track standard-gauge railroad.', kind: 'railroad', variant: 'double' },
   { id: 'sms-19', name: 'Crossing', description: 'Crossing symbols show whether a route passes above, below, or at grade.', kind: 'crossing', label: 'ABOVE · BELOW · GRADE' },
   { id: 'sms-20', name: 'Bridge', description: 'The bridge symbol may identify a highway bridge or a railroad bridge.', kind: 'bridge', label: 'HIGHWAY / RAILROAD' }
