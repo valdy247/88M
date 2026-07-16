@@ -93,6 +93,24 @@ describe('Exam utilities', () => {
     }
   });
 
+  test('includes the supplied strip-map legend topics', () => {
+    const stripMapLegendIds = [
+      'strip-15',
+      'strip-16',
+      'strip-17',
+      'strip-18',
+      'strip-19',
+      'strip-20',
+      'strip-21',
+      'strip-22',
+      'strip-23'
+    ];
+
+    for (const questionId of stripMapLegendIds) {
+      expect(allQuestions.some((question) => question.id === questionId)).toBe(true);
+    }
+  });
+
   test('shuffling preserves the correct answer mapping', () => {
     const original = allQuestions[0];
     const shuffled = shuffleQuestionOptions(original);

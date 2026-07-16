@@ -210,5 +210,140 @@ export const stripMaps: Question[] = [
     correctAnswer: 'B',
     explanation: 'In the course strip-map convention, two parallel dotted lines identify a dirt road.',
     sourceTopic: 'Strip Maps'
+  },
+  {
+    id: 'strip-15',
+    category: 'Strip Maps',
+    difficulty: 'medium',
+    question: 'What does a circle containing a unit designation identify on a strip map?',
+    options: [
+      { id: 'A', text: 'Assembly area' },
+      { id: 'B', text: 'Release point' },
+      { id: 'C', text: 'Road crossing' },
+      { id: 'D', text: 'Bridge classification' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'The course strip-map legend uses a circle containing the unit designation to identify an assembly area.',
+    sourceTopic: 'Strip Map Symbols'
+  },
+  {
+    id: 'strip-16',
+    category: 'Strip Maps',
+    difficulty: 'medium',
+    question: 'How are halt or rest areas commonly identified on the course strip map?',
+    options: [
+      { id: 'A', text: 'As designated checkpoints' },
+      { id: 'B', text: 'As release points only' },
+      { id: 'C', text: 'With a railroad symbol' },
+      { id: 'D', text: 'With an assembly-area circle' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'The legend notes that halt or rest areas are often designated as checkpoints.',
+    sourceTopic: 'Strip Map Symbols'
+  },
+  {
+    id: 'strip-17',
+    category: 'Strip Maps',
+    difficulty: 'medium',
+    question: 'Which road type is represented by the alternating black-and-white road symbol in the course strip-map legend?',
+    options: [
+      { id: 'A', text: 'Primary road' },
+      { id: 'B', text: 'Secondary road' },
+      { id: 'C', text: 'Dirt road' },
+      { id: 'D', text: 'Trail' }
+    ],
+    correctAnswer: 'B',
+    explanation: 'The alternating black-and-white road symbol is labeled Secondary road in the supplied legend.',
+    sourceTopic: 'Strip Map Road Symbols'
+  },
+  {
+    id: 'strip-18',
+    category: 'Strip Maps',
+    difficulty: 'medium',
+    question: 'What do two continuous parallel lines identify in the course strip-map road legend?',
+    options: [
+      { id: 'A', text: 'Other surfaced road' },
+      { id: 'B', text: 'Dirt road' },
+      { id: 'C', text: 'Single-track railroad' },
+      { id: 'D', text: 'Impassable road section' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'Two continuous parallel lines identify an other surfaced road in the supplied strip-map legend.',
+    sourceTopic: 'Strip Map Road Symbols'
+  },
+  {
+    id: 'strip-19',
+    category: 'Strip Maps',
+    difficulty: 'medium',
+    question: 'What does a single dotted line represent in the course strip-map legend?',
+    options: [
+      { id: 'A', text: 'Trail' },
+      { id: 'B', text: 'Primary road' },
+      { id: 'C', text: 'Railroad bridge' },
+      { id: 'D', text: 'Main supply route' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'A single dotted line is the symbol for a trail in the supplied strip-map legend.',
+    sourceTopic: 'Strip Map Road Symbols'
+  },
+  {
+    id: 'strip-20',
+    category: 'Strip Maps',
+    difficulty: 'hard',
+    question: 'What do diagonal obstruction marks drawn across a road segment indicate on a strip map?',
+    options: [
+      { id: 'A', text: 'An impassable section of road' },
+      { id: 'B', text: 'A halt or rest area' },
+      { id: 'C', text: 'A secondary road' },
+      { id: 'D', text: 'A change in route number' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'Diagonal obstruction marks across the route identify an impassable section of road.',
+    sourceTopic: 'Strip Map Road Symbols'
+  },
+  {
+    id: 'strip-21',
+    category: 'Strip Maps',
+    difficulty: 'hard',
+    question: 'Which railroad details can the strip-map legend distinguish?',
+    options: [
+      { id: 'A', text: 'Single or double track and broad or narrow gauge' },
+      { id: 'B', text: 'Passenger or freight schedules only' },
+      { id: 'C', text: 'Electric or diesel locomotives only' },
+      { id: 'D', text: 'Military or civilian ownership only' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'The legend includes separate symbols for single-track broad gauge, single-track narrow gauge, and double-track standard gauge railroads.',
+    sourceTopic: 'Strip Map Railroad Symbols'
+  },
+  {
+    id: 'strip-22',
+    category: 'Strip Maps',
+    difficulty: 'hard',
+    question: 'What relationship can a strip-map crossing symbol show between two routes?',
+    options: [
+      { id: 'A', text: 'Whether one passes above, below, or at grade' },
+      { id: 'B', text: 'Which route has the higher speed limit' },
+      { id: 'C', text: 'Which route was built first' },
+      { id: 'D', text: 'Whether both routes have checkpoints' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'Crossing symbols can indicate that one route passes above, below, or at grade with the other route.',
+    sourceTopic: 'Strip Map Crossing Symbols'
+  },
+  {
+    id: 'strip-23',
+    category: 'Strip Maps',
+    difficulty: 'medium',
+    question: 'Which two bridge types are distinguished in the supplied strip-map legend?',
+    options: [
+      { id: 'A', text: 'Highway bridge and railroad bridge' },
+      { id: 'B', text: 'Temporary bridge and permanent bridge' },
+      { id: 'C', text: 'One-way bridge and two-way bridge' },
+      { id: 'D', text: 'Wood bridge and steel bridge' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'The bridge symbol is identified as either a highway bridge or a railroad bridge.',
+    sourceTopic: 'Strip Map Bridge Symbols'
   }
 ];
