@@ -6,8 +6,12 @@ import { flashcards } from '../data/flashcards';
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-8 sm:px-6 lg:px-8">
-      <section className="mx-auto max-w-4xl space-y-8">
+    <main
+      className="relative min-h-screen bg-slate-950 bg-cover bg-top bg-no-repeat px-4 py-8 text-slate-100 sm:px-6 lg:px-8"
+      style={{ backgroundImage: "url('/images/blackjacks-home-background.jpg')" }}
+    >
+      <div className="absolute inset-0 bg-slate-950/65" aria-hidden="true" />
+      <section className="relative mx-auto max-w-4xl space-y-8">
         <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-amber-700/40 bg-black shadow-glow sm:aspect-[16/9]">
           <Image
             src="/images/blackjacks-home-hero.jpg"
