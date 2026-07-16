@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { flashcards, flashcardCategories } from '../data/flashcards';
+import { stripMapSymbolCards } from '../data/strip-map-symbols';
 
 describe('Flashcard deck', () => {
   test('contains all 200 unique flashcards', () => {
@@ -18,5 +19,11 @@ describe('Flashcard deck', () => {
       expect(card.category.trim()).not.toBe('');
       expect(flashcardCategories).toContain(card.category);
     }
+  });
+
+  test('contains a complete visual strip-map symbol deck', () => {
+    expect(stripMapSymbolCards).toHaveLength(20);
+    expect(new Set(stripMapSymbolCards.map((card) => card.id)).size).toBe(20);
+    expect(new Set(stripMapSymbolCards.map((card) => card.name)).size).toBe(20);
   });
 });

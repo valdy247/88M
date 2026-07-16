@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Home, RotateCcw, Shuffle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Home, Map as MapIcon, RotateCcw, Shuffle } from 'lucide-react';
 import { flashcards, flashcardCategories } from '../../data/flashcards';
 
 export default function FlashcardsPage() {
@@ -61,6 +61,18 @@ export default function FlashcardsPage() {
             </Link>
           </div>
         </header>
+
+        <Link
+          href="/flashcards/strip-map"
+          className="flex items-center justify-between rounded-3xl border border-amber-700/60 bg-amber-500/10 p-5 transition hover:border-amber-400"
+        >
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-300">New visual deck</p>
+            <h2 className="mt-1 text-xl font-semibold text-white">Strip Map Symbols</h2>
+            <p className="mt-1 text-sm text-slate-300">Study 20 symbols by looking at the drawing first.</p>
+          </div>
+          <MapIcon className="h-7 w-7 shrink-0 text-amber-300" />
+        </Link>
 
         <div className="flex gap-2 overflow-x-auto pb-2" aria-label="Flashcard topics">
           {['All topics', ...flashcardCategories].map((topic) => (
