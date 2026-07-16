@@ -80,16 +80,16 @@ export const groundGuides: Question[] = [
     id: 'ground-06',
     category: 'Ground Guide Procedures',
     difficulty: 'medium',
-    question: 'When choosing a position, what should determine the ground guide’s distance from the vehicle?',
+    question: 'What minimum distance should a ground guide normally maintain from a moving vehicle?',
     options: [
-      { id: 'A', text: 'Driver visibility, hazard awareness, and clearance from the vehicle path' },
-      { id: 'B', text: 'Within arm’s reach' },
-      { id: 'C', text: 'One fixed distance for every vehicle and location' },
-      { id: 'D', text: 'Standing directly behind the vehicle to judge alignment' }
+      { id: 'A', text: '2 yards' },
+      { id: 'B', text: '5 yards' },
+      { id: 'C', text: '10 yards' },
+      { id: 'D', text: '20 yards' }
     ],
-    correctAnswer: 'A',
-    explanation: 'The safe position depends on the vehicle and surroundings; the guide must remain visible, observe hazards, and stay clear of the vehicle’s path.',
-    sourceTopic: 'Ground Guide Safety'
+    correctAnswer: 'C',
+    explanation: 'Army ground-guide safety guidance calls for maintaining at least 10 yards when possible while remaining visible and clear of the vehicle path.',
+    sourceTopic: 'Ground Guide Procedures'
   },
   {
     id: 'ground-07',

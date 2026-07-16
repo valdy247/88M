@@ -11,6 +11,7 @@ import { technicalManuals } from './technical-manuals';
 import { additionalQuestions } from './additional';
 import { operationalReviewQuestions } from './operational-review';
 import { cargoLoadingQuestions } from './cargo-loading';
+import { vehicleSpecifications } from './vehicle-specifications';
 import type { Question } from '../../types/question';
 
 export const allQuestions: Question[] = [
@@ -26,7 +27,8 @@ export const allQuestions: Question[] = [
   ...handArmSignals,
   ...additionalQuestions,
   ...operationalReviewQuestions,
-  ...cargoLoadingQuestions
+  ...cargoLoadingQuestions,
+  ...vehicleSpecifications
 ];
 
 export const questionCategories = {

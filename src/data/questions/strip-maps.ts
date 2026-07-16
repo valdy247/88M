@@ -195,5 +195,20 @@ export const stripMaps: Question[] = [
     correctAnswer: 'B',
     explanation: 'In the provided strip-map material, a solid-line road represents a primary road.',
     sourceTopic: 'Strip Maps'
+  },
+  {
+    id: 'strip-14',
+    category: 'Strip Maps',
+    difficulty: 'medium',
+    question: 'In the strip-map road convention used for this course, what indicates a dirt road?',
+    options: [
+      { id: 'A', text: 'A single solid line' },
+      { id: 'B', text: 'Two parallel dotted lines' },
+      { id: 'C', text: 'A wavy line' },
+      { id: 'D', text: 'A red line' }
+    ],
+    correctAnswer: 'B',
+    explanation: 'In the course strip-map convention, two parallel dotted lines identify a dirt road.',
+    sourceTopic: 'Strip Maps'
   }
 ];

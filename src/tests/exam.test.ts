@@ -74,6 +74,25 @@ describe('Exam utilities', () => {
     expect(serializedQuestionBank).not.toMatch(/9[ -]?line|medevac|patient nationality and status/i);
   });
 
+  test('includes the reviewed vehicle and operational questions with corrected answers', () => {
+    const expectedAnswers: Record<string, string> = {
+      'ground-06': '10 yards',
+      'vehicle-spec-01': '48 inches',
+      'signal-11': 'Extend both arms and move them up and down with open hands toward the ground',
+      'vehicle-spec-02': '400 miles',
+      'formation-review-07': 'Close column',
+      'strip-14': 'Two parallel dotted lines',
+      'weapons-status-review-01': 'Ammunition is in the magazine but no round is chambered',
+      'halt-review-01': 'Herringbone'
+    };
+
+    for (const [questionId, expectedAnswer] of Object.entries(expectedAnswers)) {
+      const question = allQuestions.find((item) => item.id === questionId);
+      expect(question).toBeDefined();
+      expect(question?.options.find((option) => option.id === question.correctAnswer)?.text).toBe(expectedAnswer);
+    }
+  });
+
   test('shuffling preserves the correct answer mapping', () => {
     const original = allQuestions[0];
     const shuffled = shuffleQuestionOptions(original);

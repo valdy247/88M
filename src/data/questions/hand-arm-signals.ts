@@ -150,5 +150,20 @@ export const handArmSignals: Question[] = [
     correctAnswer: 'C',
     explanation: 'Increase Speed is signaled by raising the fist and moving it rapidly up and down.',
     sourceTopic: 'Hand and Arm Signals'
+  },
+  {
+    id: 'signal-11',
+    category: 'Hand and Arm Signals',
+    difficulty: 'medium',
+    question: 'Which hand-and-arm movement signals “Dismount”?',
+    options: [
+      { id: 'A', text: 'Extend both arms and move them up and down with open hands toward the ground' },
+      { id: 'B', text: 'Hold a single fist overhead' },
+      { id: 'C', text: 'Point repeatedly toward the ground' },
+      { id: 'D', text: 'Move one hand in a circular motion' }
+    ],
+    correctAnswer: 'A',
+    explanation: 'Dismount is signaled by extending both arms and making two or three up-and-down movements with the hands open toward the ground.',
+    sourceTopic: 'Hand and Arm Signals'
   }
 ];
