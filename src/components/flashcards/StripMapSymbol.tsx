@@ -89,9 +89,11 @@ export function StripMapSymbol({ card }: { card: StripMapSymbolCard }) {
               <line x1="102" y1="23" x2="102" y2="157" stroke={line} strokeWidth="5" />
             </>
           )}
-          {ties.map((y) => {
+          {ties.map((y, index) => {
             if (card.variant === 'single-narrow') {
-              return <line key={y} x1="69" y1={y} x2="96" y2={y} stroke={line} strokeWidth="3" />;
+              return index % 2 === 0
+                ? <line key={y} x1="63" y1={y} x2="90" y2={y} stroke={line} strokeWidth="4" />
+                : <line key={y} x1="90" y1={y} x2="117" y2={y} stroke={line} strokeWidth="4" />;
             }
 
             const half = card.variant === 'double' ? 32 : 25;
@@ -99,49 +101,17 @@ export function StripMapSymbol({ card }: { card: StripMapSymbolCard }) {
           })}
         </>
       )}
-      {card.kind === 'crossing' && (
-        <>
-          <line x1="35" y1="145" x2="145" y2="35" stroke={line} strokeWidth="4" />
-          {[48, 64, 80, 96, 112, 128].map((value) => (
-            <line key={value} x1={value - 8} y1={172 - value - 8} x2={value + 8} y2={172 - value + 8} stroke={line} strokeWidth="3" />
-          ))}
-          {card.variant !== 'grade' && (
-            <g transform="rotate(-45 90 90)">
-              <rect x="70" y="82" width="40" height="16" fill={line} />
-              <line x1="75" y1="78" x2="75" y2="102" stroke="#050606" strokeWidth="3" />
-              <line x1="105" y1="78" x2="105" y2="102" stroke="#050606" strokeWidth="3" />
-            </g>
-          )}
-          {card.variant === 'grade' && (
-            <g transform="rotate(-45 90 90)">
-              <line x1="68" y1="82" x2="112" y2="82" stroke={muted} strokeWidth="5" />
-              <line x1="68" y1="98" x2="112" y2="98" stroke={muted} strokeWidth="5" />
-            </g>
-          )}
-          <text x="90" y="166" textAnchor="middle" fill="#f59e0b" fontSize="13" fontWeight="700">{card.label}</text>
-        </>
-      )}
       {card.kind === 'bridge' && (
         <>
-          <path d="M70 18 C60 38 80 50 68 70 C58 88 78 101 67 122 C57 140 73 151 66 164" fill="none" stroke={muted} strokeWidth="4" />
-          <path d="M110 18 C120 38 100 50 112 70 C122 88 102 101 113 122 C123 140 107 151 114 164" fill="none" stroke={muted} strokeWidth="4" />
-          {card.variant === 'highway' && (
-            <>
-              <line x1="18" y1="78" x2="162" y2="78" stroke={line} strokeWidth="4" />
-              <line x1="18" y1="102" x2="162" y2="102" stroke={line} strokeWidth="4" />
-              <line x1="70" y1="66" x2="70" y2="114" stroke={line} strokeWidth="5" />
-              <line x1="110" y1="66" x2="110" y2="114" stroke={line} strokeWidth="5" />
-            </>
-          )}
-          {card.variant === 'railroad' && (
-            <>
-              <line x1="18" y1="90" x2="162" y2="90" stroke={line} strokeWidth="4" />
-              {[26, 44, 62, 80, 100, 118, 136, 154].map((x) => <line key={x} x1={x} y1="80" x2={x} y2="100" stroke={line} strokeWidth="3" />)}
-              <line x1="70" y1="68" x2="70" y2="112" stroke={line} strokeWidth="5" />
-              <line x1="110" y1="68" x2="110" y2="112" stroke={line} strokeWidth="5" />
-            </>
-          )}
-          <text x="148" y="132" fill="#f59e0b" fontSize="18" fontWeight="800">{card.label}</text>
+          <path d="M72 12 L63 28 L63 61 L57 69 M108 12 L117 28 L117 61 L123 69 M72 168 L63 152 L63 119 L57 111 M108 168 L117 152 L117 119 L123 111" fill="none" stroke={line} strokeWidth="4" />
+          <path d="M82 12 L73 28 V152 L82 168 M98 12 L107 28 V152 L98 168" fill="none" stroke={line} strokeWidth="4" />
+          <line x1="14" y1="52" x2="166" y2="52" stroke={line} strokeWidth="4" />
+          <line x1="14" y1="72" x2="166" y2="72" stroke={line} strokeWidth="4" />
+          <line x1="14" y1="126" x2="166" y2="126" stroke={line} strokeWidth="4" />
+          {[22, 42, 62, 82, 102, 122, 142, 162].map((x) => (
+            <line key={x} x1={x} y1="116" x2={x} y2="136" stroke={line} strokeWidth="3" />
+          ))}
+          <text x="94" y="94" textAnchor="middle" fill={line} fontSize="13" fontWeight="700" transform="rotate(-90 94 94)">{card.label}</text>
         </>
       )}
     </svg>
