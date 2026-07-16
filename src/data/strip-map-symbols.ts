@@ -37,6 +37,9 @@ export const stripMapSymbolCards: StripMapSymbolCard[] = [
   { id: 'sms-16', name: 'Single-Track Railroad — Broad Gauge', description: 'A single rail line with long cross ties represents broad gauge.', kind: 'railroad', variant: 'single-broad' },
   { id: 'sms-17', name: 'Single-Track Railroad — Narrow Gauge', description: 'A single rail line with short ties extending mostly to the left represents narrow gauge in this legend.', kind: 'railroad', variant: 'single-narrow' },
   { id: 'sms-18', name: 'Double-Track Railroad — Standard Gauge', description: 'Two rail lines identify a double-track standard-gauge railroad.', kind: 'railroad', variant: 'double' },
-  { id: 'sms-19', name: 'Crossing', description: 'Crossing symbols show whether a route passes above, below, or at grade.', kind: 'crossing', label: 'ABOVE · BELOW · GRADE' },
-  { id: 'sms-20', name: 'Bridge', description: 'The bridge symbol may identify a highway bridge or a railroad bridge.', kind: 'bridge', label: 'HIGHWAY / RAILROAD' }
+  { id: 'sms-19', name: 'Railroad Above Crossing', description: 'The railroad passes above the intersecting route.', kind: 'crossing', variant: 'above', label: 'RR ABOVE' },
+  { id: 'sms-20', name: 'Railroad Below Crossing', description: 'The railroad passes below the intersecting route.', kind: 'crossing', variant: 'below', label: 'RR BELOW' },
+  { id: 'sms-21', name: 'At-Grade Crossing', description: 'The railroad and route cross at the same level.', kind: 'crossing', variant: 'grade', label: 'GRADE' },
+  { id: 'sms-22', name: 'Highway Bridge', description: 'Parallel highway lines cross the stream at the bridge.', kind: 'bridge', variant: 'highway', label: 'A' },
+  { id: 'sms-23', name: 'Railroad Bridge', description: 'A railroad with cross ties crosses the stream at the bridge.', kind: 'bridge', variant: 'railroad', label: 'B' }
 ];

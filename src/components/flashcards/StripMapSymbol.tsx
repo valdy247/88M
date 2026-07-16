@@ -101,17 +101,47 @@ export function StripMapSymbol({ card }: { card: StripMapSymbolCard }) {
       )}
       {card.kind === 'crossing' && (
         <>
-          <path d="M28 68 H152 M28 112 H152" stroke={line} strokeWidth="5" />
-          <path d="M76 25 C76 62 104 62 104 90 C104 118 76 118 76 155" fill="none" stroke={muted} strokeWidth="5" />
-          <text x="90" y="96" textAnchor="middle" fill="#f59e0b" fontSize="11" fontWeight="700">{card.label}</text>
+          <line x1="35" y1="145" x2="145" y2="35" stroke={line} strokeWidth="4" />
+          {[48, 64, 80, 96, 112, 128].map((value) => (
+            <line key={value} x1={value - 8} y1={172 - value - 8} x2={value + 8} y2={172 - value + 8} stroke={line} strokeWidth="3" />
+          ))}
+          {card.variant !== 'grade' && (
+            <g transform="rotate(-45 90 90)">
+              <rect x="70" y="82" width="40" height="16" fill={line} />
+              <line x1="75" y1="78" x2="75" y2="102" stroke="#050606" strokeWidth="3" />
+              <line x1="105" y1="78" x2="105" y2="102" stroke="#050606" strokeWidth="3" />
+            </g>
+          )}
+          {card.variant === 'grade' && (
+            <g transform="rotate(-45 90 90)">
+              <line x1="68" y1="82" x2="112" y2="82" stroke={muted} strokeWidth="5" />
+              <line x1="68" y1="98" x2="112" y2="98" stroke={muted} strokeWidth="5" />
+            </g>
+          )}
+          <text x="90" y="166" textAnchor="middle" fill="#f59e0b" fontSize="13" fontWeight="700">{card.label}</text>
         </>
       )}
       {card.kind === 'bridge' && (
         <>
-          <path d="M28 70 H68 M112 70 H152 M28 110 H68 M112 110 H152" stroke={line} strokeWidth="5" />
-          <path d="M67 52 V128 M113 52 V128" stroke={line} strokeWidth="5" />
-          <path d="M58 62 H122 M58 118 H122" stroke={muted} strokeWidth="3" />
-          <text x="90" y="94" textAnchor="middle" fill="#f59e0b" fontSize="10" fontWeight="700">{card.label}</text>
+          <path d="M70 18 C60 38 80 50 68 70 C58 88 78 101 67 122 C57 140 73 151 66 164" fill="none" stroke={muted} strokeWidth="4" />
+          <path d="M110 18 C120 38 100 50 112 70 C122 88 102 101 113 122 C123 140 107 151 114 164" fill="none" stroke={muted} strokeWidth="4" />
+          {card.variant === 'highway' && (
+            <>
+              <line x1="18" y1="78" x2="162" y2="78" stroke={line} strokeWidth="4" />
+              <line x1="18" y1="102" x2="162" y2="102" stroke={line} strokeWidth="4" />
+              <line x1="70" y1="66" x2="70" y2="114" stroke={line} strokeWidth="5" />
+              <line x1="110" y1="66" x2="110" y2="114" stroke={line} strokeWidth="5" />
+            </>
+          )}
+          {card.variant === 'railroad' && (
+            <>
+              <line x1="18" y1="90" x2="162" y2="90" stroke={line} strokeWidth="4" />
+              {[26, 44, 62, 80, 100, 118, 136, 154].map((x) => <line key={x} x1={x} y1="80" x2={x} y2="100" stroke={line} strokeWidth="3" />)}
+              <line x1="70" y1="68" x2="70" y2="112" stroke={line} strokeWidth="5" />
+              <line x1="110" y1="68" x2="110" y2="112" stroke={line} strokeWidth="5" />
+            </>
+          )}
+          <text x="148" y="132" fill="#f59e0b" fontSize="18" fontWeight="800">{card.label}</text>
         </>
       )}
     </svg>

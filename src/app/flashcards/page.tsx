@@ -69,7 +69,7 @@ export default function FlashcardsPage() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-300">New visual deck</p>
             <h2 className="mt-1 text-xl font-semibold text-white">Strip Map Symbols</h2>
-            <p className="mt-1 text-sm text-slate-300">Study 20 symbols by looking at the drawing first.</p>
+            <p className="mt-1 text-sm text-slate-300">Study 23 symbols by looking at the drawing first.</p>
           </div>
           <MapIcon className="h-7 w-7 shrink-0 text-amber-300" />
         </Link>
