@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ListChecks, Layers3, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { ResumeTestCard } from '../components/landing/ResumeTestCard';
-import { flashcards } from '../data/flashcards';
 
 export default function HomePage() {
   return (
@@ -36,36 +35,34 @@ export default function HomePage() {
             className="h-auto w-full drop-shadow-2xl transition duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
           />
         </Link>
-        <div className="rounded-3xl border border-olive-700/60 bg-olive-500/5 p-8 shadow-glow">
-          <div className="space-y-5">
-            <div className="flex items-center gap-3 text-olive-300">
-              <Layers3 className="h-5 w-5" />
-              <h2 className="text-2xl font-semibold text-white">88M Flashcards</h2>
-            </div>
-            <p className="text-slate-300">Study convoy operations, PMCS, forms, radio procedures, and more with {flashcards.length} interactive cards.</p>
-            <Link
-              href="/flashcards"
-              className="inline-flex w-full items-center justify-center rounded-2xl bg-olive-600 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-olive-500"
-            >
-              Study Flashcards
-            </Link>
-          </div>
-        </div>
-        <div className="rounded-3xl border border-amber-700/60 bg-amber-500/5 p-8 shadow-glow">
-          <div className="space-y-5">
-            <div className="flex items-center gap-3 text-amber-300">
-              <ListChecks className="h-5 w-5" />
-              <h2 className="text-2xl font-semibold text-white">BIG ASS TEST</h2>
-            </div>
-            <p className="text-slate-300">50 randomized questions in a separate full-length test.</p>
-            <Link
-              href="/exam?mode=big"
-              className="inline-flex w-full items-center justify-center rounded-2xl bg-amber-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-400"
-            >
-              Start BIG ASS TEST
-            </Link>
-          </div>
-        </div>
+        <Link
+          href="/flashcards"
+          aria-label="Open the Red Book flashcards"
+          className="group mx-auto block w-full max-w-md rounded-[2rem] focus:outline-none focus-visible:ring-4 focus-visible:ring-red-500/80"
+        >
+          <Image
+            src="/images/flashcards-card.png"
+            alt="Red Book Flash Cards — study anytime, win every mission"
+            width={1046}
+            height={1408}
+            sizes="(max-width: 480px) 92vw, 448px"
+            className="h-auto w-full drop-shadow-2xl transition duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
+          />
+        </Link>
+        <Link
+          href="/exam?mode=big"
+          aria-label="Start the 50-question Big Ass Test"
+          className="group mx-auto block w-full max-w-md rounded-[2rem] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-500/80"
+        >
+          <Image
+            src="/images/big-test-card.png"
+            alt="Big Ass Test — 50 randomized questions, full-length test"
+            width={1054}
+            height={1492}
+            sizes="(max-width: 480px) 92vw, 448px"
+            className="h-auto w-full drop-shadow-2xl transition duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
+          />
+        </Link>
         <ResumeTestCard />
         <div className="rounded-3xl border border-slate-800 bg-[#111214] p-6 text-sm text-slate-300 shadow-glow">
           <p className="font-semibold text-white">Disclaimer</p>
