@@ -91,7 +91,7 @@ export function StripMapSymbol({ card }: { card: StripMapSymbolCard }) {
           )}
           {ties.map((y) => {
             if (card.variant === 'single-narrow') {
-              return <line key={y} x1="90" y1={y} x2="111" y2={y} stroke={line} strokeWidth="3" />;
+              return <line key={y} x1="84" y1={y} x2="111" y2={y} stroke={line} strokeWidth="3" />;
             }
 
             const half = card.variant === 'double' ? 32 : 25;
