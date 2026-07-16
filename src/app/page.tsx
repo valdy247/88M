@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Timer, BookOpen, ListChecks, Layers3, Search } from 'lucide-react';
 import { ResumeTestCard } from '../components/landing/ResumeTestCard';
 import { flashcards } from '../data/flashcards';
@@ -7,11 +8,15 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 px-4 py-8 sm:px-6 lg:px-8">
       <section className="mx-auto max-w-4xl space-y-8">
-        <div className="rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow">
-          <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-amber-300">Study platform</p>
-            <h1 className="text-3xl font-semibold text-white">Built by PV2 MENA for my battle buddies</h1>
-          </div>
+        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-amber-700/40 bg-black shadow-glow sm:aspect-[16/9]">
+          <Image
+            src="/images/blackjacks-home-hero.jpg"
+            alt="39T Blackjacks M1120 HEMTT Load Handling System"
+            fill
+            priority
+            sizes="(max-width: 896px) 100vw, 896px"
+            className="object-cover object-center"
+          />
         </div>
         <div className="rounded-3xl border border-slate-800 bg-[#111214] p-8 shadow-glow">
           <div className="space-y-6">
