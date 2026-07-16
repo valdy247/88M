@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Timer, BookOpen, ListChecks, Layers3, Search } from 'lucide-react';
+import { ListChecks, Layers3, Search } from 'lucide-react';
 import { ResumeTestCard } from '../components/landing/ResumeTestCard';
 import { flashcards } from '../data/flashcards';
 
@@ -22,28 +22,20 @@ export default function HomePage() {
             className="object-cover object-center"
           />
         </div>
-        <div className="rounded-3xl border border-slate-800 bg-[#111214] p-8 shadow-glow">
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-2xl font-semibold text-white">88M Practice Tests</h2>
-              <p className="text-slate-300">25 randomized questions · 40-minute timer · review and study materials</p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-                <div className="flex items-center gap-2 text-amber-300"><Timer className="h-4 w-4" /> <span className="text-sm font-semibold">40-min timer</span></div>
-              </div>
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-                <div className="flex items-center gap-2 text-olive-300"><BookOpen className="h-4 w-4" /> <span className="text-sm font-semibold">25 questions</span></div>
-              </div>
-            </div>
-            <Link
-              href="/exam"
-              className="inline-flex w-full items-center justify-center rounded-2xl bg-olive-600 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-olive-500"
-            >
-              Start Test
-            </Link>
-          </div>
-        </div>
+        <Link
+          href="/exam"
+          aria-label="Start the 25-question Red Book practice test"
+          className="group mx-auto block w-full max-w-md rounded-[2rem] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/80"
+        >
+          <Image
+            src="/images/practice-test-card.png"
+            alt="Red Book Practice Test — 25 questions, 40 minutes"
+            width={924}
+            height={1296}
+            sizes="(max-width: 480px) 92vw, 448px"
+            className="h-auto w-full drop-shadow-2xl transition duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
+          />
+        </Link>
         <div className="rounded-3xl border border-olive-700/60 bg-olive-500/5 p-8 shadow-glow">
           <div className="space-y-5">
             <div className="flex items-center gap-3 text-olive-300">
@@ -75,7 +67,7 @@ export default function HomePage() {
           </div>
         </div>
         <ResumeTestCard />
-        <div className="rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow text-sm text-slate-300">
+        <div className="rounded-3xl border border-slate-800 bg-[#111214] p-6 text-sm text-slate-300 shadow-glow">
           <p className="font-semibold text-white">Disclaimer</p>
           <p className="mt-2">Unofficial independent study tool. Not affiliated with, endorsed by, or approved by the U.S. Army or Department of Defense. Always verify using current authorized training materials.</p>
         </div>
