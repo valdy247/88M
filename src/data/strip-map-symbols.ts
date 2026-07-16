@@ -37,5 +37,6 @@ export const stripMapSymbolCards: StripMapSymbolCard[] = [
   { id: 'sms-16', name: 'Single-Track Railroad — Broad Gauge', description: 'A single rail line with long cross ties represents broad gauge.', kind: 'railroad', variant: 'single-broad' },
   { id: 'sms-17', name: 'Single-Track Railroad — Narrow Gauge', description: 'A single rail line with short ties alternating to the left and right represents narrow gauge in this study deck.', kind: 'railroad', variant: 'single-narrow' },
   { id: 'sms-18', name: 'Double-Track Railroad — Standard Gauge', description: 'Two rail lines identify a double-track standard-gauge railroad.', kind: 'railroad', variant: 'double' },
-  { id: 'sms-19', name: 'Bridge', description: 'The combined bridge symbol shows a highway crossing above and a railroad crossing below a stream.', kind: 'bridge', variant: 'combined', label: 'STREAM' }
+  { id: 'sms-19', name: 'Crossings', description: 'The combined crossing symbol shows a railroad passing above, below, and at grade with another route.', kind: 'crossing', variant: 'combined' },
+  { id: 'sms-20', name: 'Bridge', description: 'The combined bridge symbol shows a highway crossing above and a railroad crossing below a stream.', kind: 'bridge', variant: 'combined', label: 'STREAM' }
 ];

@@ -22,8 +22,8 @@ describe('Flashcard deck', () => {
   });
 
   test('contains a complete visual strip-map symbol deck', () => {
-    expect(stripMapSymbolCards).toHaveLength(19);
-    expect(new Set(stripMapSymbolCards.map((card) => card.id)).size).toBe(19);
-    expect(new Set(stripMapSymbolCards.map((card) => card.name)).size).toBe(19);
+    expect(stripMapSymbolCards).toHaveLength(20);
+    expect(new Set(stripMapSymbolCards.map((card) => card.id)).size).toBe(20);
+    expect(new Set(stripMapSymbolCards.map((card) => card.name)).size).toBe(20);
   });
 });

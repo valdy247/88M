@@ -101,6 +101,27 @@ export function StripMapSymbol({ card }: { card: StripMapSymbolCard }) {
           })}
         </>
       )}
+      {card.kind === 'crossing' && (
+        <>
+          <g transform="rotate(34 90 90)">
+            <line x1="90" y1="8" x2="90" y2="172" stroke={line} strokeWidth="4" />
+            {[20, 38, 56, 74, 92, 110, 128, 146, 164].map((y) => (
+              <line key={y} x1="79" y1={y} x2="101" y2={y} stroke={line} strokeWidth="3" />
+            ))}
+            <rect x="61" y="28" width="58" height="13" fill={line} />
+            <rect x="61" y="84" width="58" height="13" fill={line} />
+            {[65, 74, 106, 115].map((x) => (
+              <line key={x} x1={x} y1="79" x2={x} y2="102" stroke={line} strokeWidth="3" />
+            ))}
+            <rect x="61" y="142" width="58" height="13" fill={line} />
+          </g>
+          <text x="126" y="39" fill={line} fontSize="12" fontWeight="800">RR</text>
+          <text x="126" y="54" fill={line} fontSize="12" fontWeight="800">ABOVE</text>
+          <text x="119" y="96" fill={line} fontSize="12" fontWeight="800">RR</text>
+          <text x="119" y="111" fill={line} fontSize="12" fontWeight="800">BELOW</text>
+          <text x="108" y="158" fill={line} fontSize="12" fontWeight="800">GRADE</text>
+        </>
+      )}
       {card.kind === 'bridge' && (
         <>
           <path d="M72 12 L63 28 L63 61 L57 69 M108 12 L117 28 L117 61 L123 69 M72 168 L63 152 L63 119 L57 111 M108 168 L117 152 L117 119 L123 111" fill="none" stroke={line} strokeWidth="4" />
