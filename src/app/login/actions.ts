@@ -14,6 +14,21 @@ function loginUrl(type: 'error' | 'message', message: string, mode?: 'login' | '
   return `/login?${params.toString()}`;
 }
 
+function authErrorMessage(error: unknown) {
+  if (!error || typeof error !== 'object') return 'Something went wrong. Please try again.';
+
+  const authError = error as { code?: string; message?: string; status?: number };
+  if (authError.code === 'over_email_send_rate_limit' || authError.status === 429) {
+    return 'Too many emails were requested. Please wait and try again.';
+  }
+  if (authError.code === 'unexpected_failure' || authError.status === 500) {
+    return 'We could not send the verification email. Please try again later.';
+  }
+
+  const message = authError.message?.trim();
+  return message && message !== '{}' ? message : 'Something went wrong. Please try again.';
+}
+
 export async function signIn(formData: FormData) {
   const email = value(formData, 'email').toLowerCase();
   const password = value(formData, 'password');
@@ -21,7 +36,7 @@ export async function signIn(formData: FormData) {
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) redirect(loginUrl('error', error.message));
+  if (error) redirect(loginUrl('error', authErrorMessage(error)));
   redirect('/account');
 }
 
@@ -57,7 +72,7 @@ export async function signUp(formData: FormData) {
     }
   });
 
-  if (error) redirect(loginUrl('error', error.message, 'register'));
+  if (error) redirect(loginUrl('error', authErrorMessage(error), 'register'));
   redirect(loginUrl('message', 'Check your email to verify your account.'));
 }
 
