@@ -12,9 +12,11 @@
     "validate:questions": "tsx src/lib/validation/validate-questions.ts"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.7",
     "jspdf": "^4.2.1",
     "lucide-react": "^0.532.0",
-    "next": "14.2.5",
+    "next": "^15.5.18",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },

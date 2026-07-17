@@ -11,6 +11,7 @@ import { CopyResultsButton } from '../../components/results/CopyResultsButton';
 import { PrintResultsButton } from '../../components/results/PrintResultsButton';
 import { StartNewTestButton } from '../../components/results/StartNewTestButton';
 import { ExamSession } from '../../types/exam';
+import { saveExamAttempt } from '../../lib/supabase/save-exam-attempt';
 
 export default function ResultsPage() {
   const [session, setSession] = useState<ExamSession | null>(null);
@@ -21,6 +22,7 @@ export default function ResultsPage() {
     const loaded = loadExamSession();
     if (loaded?.status === 'submitted') {
       setSession(loaded);
+      void saveExamAttempt(loaded);
     }
     setLoading(false);
   }, []);

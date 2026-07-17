@@ -1,5 +1,6 @@
 const nextConfig = {
   reactStrictMode: true,
+  outputFileTracingRoot: process.cwd(),
   images: {
     remotePatterns: []
   }

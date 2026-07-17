@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Search } from 'lucide-react';
 import { ResumeTestCard } from '../components/landing/ResumeTestCard';
+import { HomeAuthLink } from '../components/auth/HomeAuthLink';
 
 export default function HomePage() {
   return (
@@ -11,6 +12,9 @@ export default function HomePage() {
     >
       <div className="absolute inset-0 bg-slate-950/65" aria-hidden="true" />
       <section className="relative mx-auto max-w-4xl space-y-8">
+        <div className="flex justify-end">
+          <HomeAuthLink />
+        </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-amber-700/40 bg-black shadow-glow sm:aspect-[16/9]">
           <Image
             src="/images/blackjacks-home-hero.jpg"
