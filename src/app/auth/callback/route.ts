@@ -11,6 +11,15 @@ export async function GET(request: Request) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) return NextResponse.redirect(new URL(next, url.origin));
+
+    // Email apps often open confirmation links in a different browser. The
+    // address is still verified, but that browser does not have the PKCE
+    // verifier needed to create a session automatically.
+    if (next === '/account' && error.code === 'bad_code_verifier') {
+      return NextResponse.redirect(
+        new URL('/login?message=Email+verified.+Log+in+to+continue.', url.origin)
+      );
+    }
   }
 
   return NextResponse.redirect(new URL('/login?error=Could+not+verify+your+email.', url.origin));
