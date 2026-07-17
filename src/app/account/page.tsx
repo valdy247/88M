@@ -25,7 +25,7 @@ export default async function AccountPage({ searchParams }: Props) {
           <Link href="/" className="font-semibold text-amber-300">← Home</Link>
           <form action="/auth/logout" method="post"><button className="rounded-2xl border border-slate-700 px-4 py-2 text-sm font-semibold">Log out</button></form>
         </div>
-        <section className="rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow">
+        <section id="profile" className="scroll-mt-6 rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow">
           <div className="flex items-start justify-between gap-4">
             <div><p className="text-sm uppercase tracking-[0.25em] text-amber-300">Profile</p><h1 className="mt-1 text-2xl font-semibold">{profile.rank} {profile.first_name} {profile.last_name}</h1><p className="mt-1 text-sm text-slate-400">Class {profile.class_number}</p></div>
             {profile.role === 'admin' && <Link href="/admin" className="rounded-2xl bg-amber-500 px-4 py-2 text-sm font-semibold text-slate-950">Admin</Link>}
@@ -40,7 +40,7 @@ export default async function AccountPage({ searchParams }: Props) {
             <button className="rounded-2xl bg-olive-600 px-5 py-3 font-semibold text-slate-950 sm:col-span-2">Save</button>
           </form>
         </section>
-        <section className="rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow">
+        <section id="test-results" className="scroll-mt-6 rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow">
           <h2 className="text-lg font-semibold">Recent tests</h2>
           <div className="mt-4 space-y-2">
             {attempts?.map((attempt) => <div key={attempt.id} className="flex justify-between rounded-2xl bg-slate-900 px-4 py-3 text-sm"><span>{attempt.exam_type === 'big' ? 'Big test' : 'Regular test'}</span><strong>{attempt.score}%</strong></div>)}

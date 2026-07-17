@@ -4,8 +4,8 @@ import { createClient } from '../../../lib/supabase/server';
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
-  const requestedNext = url.searchParams.get('next') ?? '/account';
-  const next = requestedNext.startsWith('/') && !requestedNext.startsWith('//') ? requestedNext : '/account';
+  const requestedNext = url.searchParams.get('next') ?? '/';
+  const next = requestedNext.startsWith('/') && !requestedNext.startsWith('//') ? requestedNext : '/';
 
   if (code) {
     const supabase = await createClient();
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     // Email apps often open confirmation links in a different browser. The
     // address is still verified, but that browser does not have the PKCE
     // verifier needed to create a session automatically.
-    if (next === '/account' && error.code === 'bad_code_verifier') {
+    if ((next === '/' || next === '/account') && error.code === 'bad_code_verifier') {
       return NextResponse.redirect(
         new URL('/login?message=Email+verified.+Log+in+to+continue.', url.origin)
       );

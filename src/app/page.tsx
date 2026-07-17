@@ -12,7 +12,7 @@ export default function HomePage() {
     >
       <div className="absolute inset-0 bg-slate-950/65" aria-hidden="true" />
       <section className="relative mx-auto max-w-4xl space-y-8">
-        <div className="flex justify-end">
+        <div className="flex w-full">
           <HomeAuthLink />
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-amber-700/40 bg-black shadow-glow sm:aspect-[16/9]">

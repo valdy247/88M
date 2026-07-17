@@ -37,7 +37,7 @@ export async function signIn(formData: FormData) {
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) redirect(loginUrl('error', authErrorMessage(error)));
-  redirect('/account');
+  redirect('/');
 }
 
 export async function signUp(formData: FormData) {
@@ -62,7 +62,7 @@ export async function signUp(formData: FormData) {
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/auth/callback?next=/account`,
+      emailRedirectTo: `${origin}/auth/callback?next=/`,
       data: {
         first_name: firstName,
         last_name: lastName,

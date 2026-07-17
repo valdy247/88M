@@ -13,7 +13,7 @@ export default async function LoginPage({ searchParams }: Props) {
   const params = await searchParams;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  if (user) redirect('/account');
+  if (user) redirect('/');
 
   const register = params.mode === 'register';
 
