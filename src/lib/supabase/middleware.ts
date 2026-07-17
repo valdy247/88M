@@ -26,6 +26,7 @@ export async function updateSession(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser();
   const protectedRoute = request.nextUrl.pathname.startsWith('/account') ||
     request.nextUrl.pathname.startsWith('/admin') ||
+    request.nextUrl.pathname.startsWith('/cadences') ||
     request.nextUrl.pathname.startsWith('/update-password');
 
   if (!user && protectedRoute) {

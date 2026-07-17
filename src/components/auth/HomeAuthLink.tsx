@@ -37,7 +37,7 @@ export async function HomeAuthLink() {
           <Link href="/account#test-results" className={menuItem}><BookOpen className="h-4 w-4 text-amber-300" /> Test Results</Link>
           {profile?.role === 'admin' && <Link href="/admin" className={menuItem}><Shield className="h-4 w-4 text-amber-300" /> Admin</Link>}
           <div className="my-1 border-t border-slate-800" />
-          <div className={`${menuItem} justify-between text-slate-400`}><span className="flex items-center gap-3"><Music2 className="h-4 w-4" /> Cadences</span><small>Coming soon</small></div>
+          <Link href="/cadences" className={menuItem}><Music2 className="h-4 w-4 text-amber-300" /> Cadences</Link>
           <div className={`${menuItem} justify-between text-slate-400`}><span className="flex items-center gap-3"><BookOpen className="h-4 w-4" /> Important for You</span><small>Coming soon</small></div>
           <div className={`${menuItem} justify-between text-slate-400`}><span className="flex items-center gap-3"><GalleryHorizontal className="h-4 w-4" /> Gallery</span><small>Coming soon</small></div>
           <div className="my-1 border-t border-slate-800" />
