@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Clipboard, Printer, RefreshCcw } from 'lucide-react';
+import { ArrowLeft, Home, RefreshCcw } from 'lucide-react';
 import { loadExamSession, clearExamSession } from '../../lib/storage/exam-storage';
 import { calculateResults } from '../../lib/exam/calculate-results';
 import { ReviewQuestionCard } from '../../components/results/ReviewQuestionCard';
@@ -48,6 +48,9 @@ export default function ResultsPage() {
           >
             Start New Test
           </button>
+          <Link href="/" className="ml-3 mt-6 inline-flex rounded-2xl border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-amber-400">
+            Home
+          </Link>
         </div>
       </main>
     );
@@ -68,9 +71,14 @@ export default function ResultsPage() {
               <p className="text-sm uppercase tracking-[0.3em] text-amber-300">Results</p>
               <h1 className="text-3xl font-semibold text-white">Exam complete</h1>
             </div>
-            <Link href="/exam" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-800">
-              <ArrowLeft className="h-4 w-4" /> Start New Test
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/" className="inline-flex items-center gap-2 rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-amber-400">
+                <Home className="h-4 w-4" /> Home
+              </Link>
+              <Link href="/exam" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-800">
+                <ArrowLeft className="h-4 w-4" /> Start New Test
+              </Link>
+            </div>
           </div>
           <ResultsSummary session={session} results={results} />
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

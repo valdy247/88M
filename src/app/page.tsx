@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Search } from 'lucide-react';
 import { ResumeTestCard } from '../components/landing/ResumeTestCard';
 import { HomeAuthLink } from '../components/auth/HomeAuthLink';
+import { GuestCompetitionAlert } from '../components/landing/GuestCompetitionAlert';
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
         <div className="flex w-full">
           <HomeAuthLink />
         </div>
+        <GuestCompetitionAlert />
         <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-amber-700/40 bg-black shadow-glow sm:aspect-[16/9]">
           <Image
             src="/images/blackjacks-home-hero.jpg"

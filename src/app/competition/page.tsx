@@ -56,8 +56,8 @@ export default async function CompetitionPage() {
           </div>
         </section>
 
-        {!attempt && <CompetitionExam questions={getPublicCompetitionQuestions(date)} />}
-          {attempt && <p className="mt-6 rounded-2xl border border-emerald-600/30 bg-emerald-500/10 p-4 text-center text-sm text-emerald-200">Today’s championship attempt is complete. Your result and status remain on the global leaderboard.</p>}
+        <CompetitionExam questions={getPublicCompetitionQuestions(date)} hasPreviousAttempt={Boolean(attempt)} />
+        {attempt && <p className="mt-4 rounded-2xl border border-emerald-600/30 bg-emerald-500/10 p-4 text-center text-sm text-emerald-200">Your latest result is on the leaderboard. Retaking the test will replace it, even if the new score is lower.</p>}
 
         <section className="mt-8 overflow-hidden rounded-3xl border border-slate-800 bg-[#111214] shadow-glow">
           <div className="border-b border-slate-800 p-5"><h2 className="text-xl font-bold">Top 100 Global Leaderboard</h2><p className="mt-1 text-xs text-slate-400">All-time best score · fastest time breaks ties</p></div>

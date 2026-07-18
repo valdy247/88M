@@ -47,7 +47,7 @@ export async function HomeAuthLink() {
           <div className="my-1 border-t border-slate-800" />
           <Link href="/cadences" className={menuItem}><Music2 className="h-4 w-4 text-amber-300" /> Cadences</Link>
           <div className={`${menuItem} justify-between text-slate-400`}><span className="flex items-center gap-3"><BookOpen className="h-4 w-4" /> Important for You</span><small>Coming soon</small></div>
-          <div className={`${menuItem} justify-between text-slate-400`}><span className="flex items-center gap-3"><GalleryHorizontal className="h-4 w-4" /> Gallery</span><small>Coming soon</small></div>
+          <Link href="/gallery" className={menuItem}><GalleryHorizontal className="h-4 w-4 text-amber-300" /> Vehicle Gallery</Link>
           <div className="my-1 border-t border-slate-800" />
           <form action="/auth/logout" method="post">
             <button className="w-full rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-red-300 transition hover:bg-red-500/10">Log out</button>

@@ -27,6 +27,7 @@ export async function updateSession(request: NextRequest) {
   const protectedRoute = request.nextUrl.pathname.startsWith('/account') ||
     request.nextUrl.pathname.startsWith('/admin') ||
     request.nextUrl.pathname.startsWith('/cadences') ||
+    request.nextUrl.pathname.startsWith('/gallery') ||
     request.nextUrl.pathname.startsWith('/competition') ||
     request.nextUrl.pathname.startsWith('/update-password');
 
