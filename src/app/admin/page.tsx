@@ -14,7 +14,7 @@ export default async function AdminPage() {
 
   const [{ data: users }, { data: attempts }] = await Promise.all([
     supabase.from('profiles').select('id, email, first_name, last_name, rank, class_number, role, created_at').order('created_at', { ascending: false }),
-    supabase.from('exam_attempts').select('id, user_id, exam_type, score, correct_answers, total_questions, completed_at').order('completed_at', { ascending: false }).limit(100)
+    supabase.from('exam_attempts').select('id, user_id, exam_type, score, correct_answers, total_questions, completed_at').gt('score', 0).order('completed_at', { ascending: false }).limit(100)
   ]);
   const average = attempts?.length ? Math.round(attempts.reduce((sum, item) => sum + item.score, 0) / attempts.length) : 0;
   const userMap = new Map(users?.map((profile) => [profile.id, profile]));

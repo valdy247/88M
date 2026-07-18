@@ -15,7 +15,7 @@ export default async function AccountPage({ searchParams }: Props) {
 
   const [{ data: profile }, { data: attempts }, { data: leaderboardData }] = await Promise.all([
     supabase.from('profiles').select('*').eq('id', user.id).single(),
-    supabase.from('exam_attempts').select('id, exam_type, score, total_questions, completed_at').order('completed_at', { ascending: false }).limit(5),
+    supabase.from('exam_attempts').select('id, exam_type, score, total_questions, completed_at').gt('score', 0).order('completed_at', { ascending: false }).limit(5),
     supabase.rpc('get_daily_competition_leaderboard')
   ]);
   if (!profile) redirect('/login?error=Profile+not+found.');
