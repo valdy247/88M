@@ -180,5 +180,20 @@ export const da5988e: Question[] = [
     correctAnswer: 'A',
     explanation: 'Corrective Action records the action taken to repair or mitigate the fault.',
     sourceTopic: 'DA Form 5988-E'
+  },
+  {
+    id: 'da-13',
+    category: 'DA Form 5988-E',
+    difficulty: 'medium',
+    question: 'Who has authority to approve a circled-X fault for limited operation of assigned equipment?',
+    options: [
+      { id: 'A', text: 'The senior licensed operator assigned to the vehicle' },
+      { id: 'B', text: 'The commander responsible for the assigned equipment' },
+      { id: 'C', text: 'The maintenance clerk who prints the DA Form 5988-E' },
+      { id: 'D', text: 'The mechanic who first identifies the fault' }
+    ],
+    correctAnswer: 'B',
+    explanation: 'The responsible commander has authority to approve a circled-X condition for limited operation under specified conditions.',
+    sourceTopic: 'DA Form 5988-E Status Symbols'
   }
 ];

@@ -270,5 +270,20 @@ export const radioProcedures: Question[] = [
     correctAnswer: 'B',
     explanation: 'Emergency Traffic is used to gain control of the frequency for critical information.',
     sourceTopic: 'Radio Procedures'
+  },
+  {
+    id: 'radio-19',
+    category: 'Radio Procedures',
+    difficulty: 'medium',
+    question: 'Which combination best describes effective speech during a radio transmission?',
+    options: [
+      { id: 'A', text: 'Clear, detailed, and conversational' },
+      { id: 'B', text: 'Brief, rapid, and coded' },
+      { id: 'C', text: 'Clear, concise, and unambiguous' },
+      { id: 'D', text: 'Concise, informal, and repetitive' }
+    ],
+    correctAnswer: 'C',
+    explanation: 'Effective radio speech must be clear, concise, and unambiguous so the receiver can understand the message correctly.',
+    sourceTopic: 'Radio Voice Procedure'
   }
 ];

@@ -3,12 +3,12 @@ import { flashcards, flashcardCategories } from '../data/flashcards';
 import { stripMapSymbolCards } from '../data/strip-map-symbols';
 
 describe('Flashcard deck', () => {
-  test('contains all 200 unique flashcards', () => {
-    expect(flashcards).toHaveLength(200);
-    expect(new Set(flashcards.map((card) => card.id)).size).toBe(200);
-    expect(new Set(flashcards.map((card) => card.question.trim().toLowerCase())).size).toBe(200);
+  test('contains all 205 unique flashcards', () => {
+    expect(flashcards).toHaveLength(205);
+    expect(new Set(flashcards.map((card) => card.id)).size).toBe(205);
+    expect(new Set(flashcards.map((card) => card.question.trim().toLowerCase())).size).toBe(205);
     expect(flashcards.map((card) => card.id)).toEqual(
-      Array.from({ length: 200 }, (_, index) => `fc-${String(index + 1).padStart(3, '0')}`)
+      Array.from({ length: 205 }, (_, index) => `fc-${String(index + 1).padStart(3, '0')}`)
     );
   });
 

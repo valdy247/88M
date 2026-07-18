@@ -205,7 +205,12 @@ export const flashcards: Flashcard[] = [
   { id: 'fc-197', category: 'Convoy Operations and Final Review', question: 'Why are vehicle intervals important in a convoy?', answer: 'They provide reaction distance, reduce congestion, and help maintain safe movement.' },
   { id: 'fc-198', category: 'Convoy Operations and Final Review', question: 'What should a convoy driver do if visual signals are passed from the vehicle ahead?', answer: 'Relay the signals promptly to the vehicle behind.' },
   { id: 'fc-199', category: 'Convoy Operations and Final Review', question: 'What should be maintained throughout a convoy movement?', answer: 'Proper speed, interval, communication, discipline, and vehicle control.' },
-  { id: 'fc-200', category: 'Convoy Operations and Final Review', question: 'What should soldiers do when study material conflicts with a current technical manual or instructor guidance?', answer: 'Follow the current authorized technical manual and instructor guidance.' }
+  { id: 'fc-200', category: 'Convoy Operations and Final Review', question: 'What should soldiers do when study material conflicts with a current technical manual or instructor guidance?', answer: 'Follow the current authorized technical manual and instructor guidance.' },
+  { id: 'fc-201', category: 'Radio Procedures', question: 'How should speech be delivered during a radio transmission?', answer: 'Clearly, concisely, and unambiguously.' },
+  { id: 'fc-202', category: 'DA Form 5988-E', question: 'Who has authority to approve a circled-X fault for limited operation?', answer: 'The commander responsible for the assigned equipment.' },
+  { id: 'fc-203', category: 'Strip Maps', question: 'What is an assembly area?', answer: 'An area where units assemble or stage in preparation for movement.' },
+  { id: 'fc-204', category: 'Strip Maps', question: 'Which units may be used for distance between points on a strip map?', answer: 'Miles or kilometers, as identified on the map.' },
+  { id: 'fc-205', category: 'Hand and Arm Signals', question: 'What is the purpose of hand-and-arm signals around vehicles?', answer: 'To guide and direct vehicle movement when the signals are understood by the driver and guide.' }
 ];
 
 export const flashcardCategories = Array.from(new Set(flashcards.map((card) => card.category)));
