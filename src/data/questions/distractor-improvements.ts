@@ -1,6 +1,102 @@
 import type { Question, QuestionOption } from '../../types/question';
 
 const improvedOptions: Record<string, [string, string, string, string]> = {
+  'convoy-review-01': [
+    'Vehicles sharing a route while remaining under separate unit control',
+    'A group of vehicles organized for control and orderly movement',
+    'Two or more military vehicles dispatched within the same movement window',
+    'A march unit traveling between the Start Point and Release Point'
+  ],
+  'convoy-review-08': [
+    'Sound signals',
+    'Visual signals passed from vehicle to vehicle',
+    'Messenger vehicles moving between march units',
+    'Prearranged checkpoint reports'
+  ],
+  'discipline-review-01': [
+    'Acknowledge it and wait for the convoy commander to relay it',
+    'Relay it promptly to the vehicle behind',
+    'Relay it only after confirming it by radio',
+    'Hold it until the entire march unit has slowed'
+  ],
+  'discipline-review-02': [
+    'Following traffic regulations and operating equipment properly',
+    'Maintaining the planned interval even when traffic laws require adjustment',
+    'Correcting a minor route deviation before notifying convoy control',
+    'Delaying fault reports until the next scheduled halt to preserve movement'
+  ],
+  'adverse-review-01': [
+    'Maintain convoy speed but increase following distance',
+    'Reduce speed, increase following distance, and use extra caution',
+    'Reduce speed while keeping the planned dry-road interval',
+    'Follow the lead vehicle more closely to maintain visual contact'
+  ],
+  'adverse-review-02': [
+    'Depth, current, bottom condition, and exit point',
+    'Depth, bank width, vehicle speed, and tire pressure',
+    'Current, convoy interval, approach angle, and radio range',
+    'Bottom condition, route classification, vehicle weight, and checkpoint location'
+  ],
+  'additional-21': [
+    'Enter slowly and use the lead vehicle to confirm the surface',
+    'Check water depth and bottom firmness',
+    'Check only whether the water is below the vehicle fording limit',
+    'Maintain momentum while a ground guide checks the exit bank'
+  ],
+  'additional-23': [
+    'Maintaining steady momentum',
+    'Sudden acceleration and hard braking',
+    'Using a lower gear before entering the soft area',
+    'Making gradual steering corrections to stay in existing tracks'
+  ],
+  'cargo-01': [
+    'Centered over the highest point of the load to prevent shifting',
+    'At the front of the platform to increase steering control',
+    'On the bottom',
+    'At the rear of the platform to improve axle balance'
+  ],
+  'accident-14': [
+    'Sections I–IX',
+    'Sections I–VIII, with Section IX reserved for the supervisor',
+    'Sections I–VI and the certification block in Section X',
+    'Sections I–VII, with the remaining sections completed by law enforcement'
+  ],
+  'pmcs-04': [
+    'Record the deficiency and continue unless it affects vehicle movement',
+    'Report the fault to maintenance',
+    'Apply a status symbol and wait until the next scheduled service',
+    'Notify the dispatcher after completing the mission'
+  ],
+  'pmcs-11': [
+    'Whether the operator can prevent the leak from forming additional drops',
+    'The limits and instructions in the applicable technical manual',
+    'Whether the leak is entered on DA Form 5988-E before dispatch',
+    'Whether the equipment remains fully mission capable during a road test'
+  ],
+  'ground-03': [
+    'Continue at idle speed until the guide becomes visible',
+    'Stop immediately',
+    'Stop only if the guide also stops signaling',
+    'Continue to the last position indicated by the guide'
+  ],
+  'formation-review-05': [
+    'As complete march units at uniform intervals',
+    'Individually or in small groups at irregular intervals',
+    'Individually at fixed intervals controlled from the Start Point',
+    'In small groups at uniform intervals with continuous centralized control'
+  ],
+  'ground-11': [
+    'Whenever the vehicle is operating outside a marked roadway',
+    'At congested locations like motor pools or fuel points',
+    'Whenever the driver must reverse more than one vehicle length',
+    'At every halt where vehicles must close their intervals'
+  ],
+  'signal-11': [
+    'Extend both arms and move them up and down with open hands toward the ground',
+    'Extend both arms downward and sweep them outward from the body',
+    'Point toward the ground with both hands while stepping away from the vehicle',
+    'Raise both forearms and lower them repeatedly with closed fists'
+  ],
   'radio-07': [
     'Transmit sensitive data only when required and authorized',
     'Transmit sensitive data whenever it improves mission coordination',
