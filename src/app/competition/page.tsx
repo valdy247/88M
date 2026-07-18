@@ -21,6 +21,16 @@ export default async function CompetitionPage() {
     supabase.from('competition_attempts').select('score, correct_answers, duration_seconds').eq('user_id', user.id).eq('competition_date', date).maybeSingle()
   ]);
   const leaderboard = (leaderboardData ?? []) as LeaderboardRow[];
+  const leaderboardUserIds = leaderboard.map((row) => row.user_id);
+  const { data: leaderboardProfiles } = leaderboardUserIds.length
+    ? await supabase.from('profiles').select('id, last_name').in('id', leaderboardUserIds)
+    : { data: [] };
+  const lastNameByUser = new Map(
+    leaderboardProfiles?.map((profile) => [profile.id, profile.last_name?.trim().split(/\s+/)[0]])
+  );
+  leaderboard.forEach((row) => {
+    row.soldier = lastNameByUser.get(row.user_id) || row.soldier;
+  });
   const ownRank = leaderboard.find((row) => row.user_id === user.id)?.leaderboard_rank ?? null;
 
   return (

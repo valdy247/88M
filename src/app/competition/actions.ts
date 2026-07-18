@@ -32,7 +32,7 @@ export async function submitCompetition(answers: Record<string, AnswerId | null>
   const questions = getDailyCompetitionQuestions(date);
   const correct = questions.reduce((total, question) => total + (answers[question.id] === question.correctAnswer ? 1 : 0), 0);
   const duration = Math.min(2400, Math.max(0, Math.round((Date.now() - new Date(start.started_at).getTime()) / 1000)));
-  const { data: profile } = await supabase.from('profiles').select('first_name').eq('id', user.id).single();
+  const { data: profile } = await supabase.from('profiles').select('last_name').eq('id', user.id).single();
   const { error } = await supabase.from('competition_attempts').insert({
     user_id: user.id,
     competition_date: date,
@@ -40,7 +40,7 @@ export async function submitCompetition(answers: Record<string, AnswerId | null>
     correct_answers: correct,
     total_questions: 50,
     duration_seconds: duration,
-    soldier: profile?.first_name?.trim() || 'Soldier'
+    soldier: profile?.last_name?.trim().split(/\s+/)[0] || 'Soldier'
   });
 
   if (error?.code === '23505') return { error: 'You already submitted today’s competition.' };
