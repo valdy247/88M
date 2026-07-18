@@ -26,6 +26,20 @@ export default function HomePage() {
           />
         </div>
         <Link
+          href="/competition"
+          aria-label="Open the daily 88M Hall of Fame competition"
+          className="group mx-auto block w-full max-w-md rounded-[2rem] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/80"
+        >
+          <Image
+            src="/images/hall-of-fame-card.jpg"
+            alt="88M Hall of Fame daily competition"
+            width={1536}
+            height={1024}
+            sizes="(max-width: 480px) 92vw, 448px"
+            className="h-auto w-full rounded-[2rem] drop-shadow-2xl transition duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
+          />
+        </Link>
+        <Link
           href="/exam"
           aria-label="Start the 25-question Red Book practice test"
           className="group mx-auto block w-full max-w-md rounded-[2rem] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/80"

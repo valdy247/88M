@@ -6,8 +6,18 @@ import { calculateResults, getCorrectCount, getIncorrectCount, getUnansweredCoun
 import { formatTimer, getTimeRemaining } from '../lib/exam/timer';
 import { loadExamSession, saveExamSession, clearExamSession, createExamSession } from '../lib/storage/exam-storage';
 import type { ExamSession } from '../types/exam';
+import { getDailyCompetitionQuestions } from '../lib/competition/daily-questions';
 
 describe('Exam utilities', () => {
+  test('builds a deterministic 50-question daily competition from the hardest pool', () => {
+    const first = getDailyCompetitionQuestions('2026-07-17');
+    const second = getDailyCompetitionQuestions('2026-07-17');
+    expect(first).toHaveLength(50);
+    expect(new Set(first.map((question) => question.id)).size).toBe(50);
+    expect(first.filter((question) => question.difficulty === 'hard')).toHaveLength(36);
+    expect(second.map((question) => question.id)).toEqual(first.map((question) => question.id));
+  });
+
   test('selects exactly 25 unique questions', () => {
     const exam = generateExam(allQuestions);
     expect(exam).toHaveLength(25);

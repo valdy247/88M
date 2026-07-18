@@ -42,7 +42,10 @@ export default async function LoginPage({ searchParams }: Props) {
                   <option value="" disabled>Rank</option>
                   {ranks.map((rank) => <option key={rank} value={rank}>{rank}</option>)}
                 </select>
-                <input className={inputClass} name="class_number" placeholder="Class number" required maxLength={40} />
+                <label className="flex overflow-hidden rounded-2xl border border-slate-700 bg-slate-950/90 focus-within:border-amber-400">
+                  <input className="min-w-0 flex-1 bg-transparent px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none" type="number" inputMode="numeric" name="class_number" placeholder="Class number" required min="1" max="999" />
+                  <span className="flex items-center border-l border-slate-700 px-4 font-bold text-amber-300">T</span>
+                </label>
               </div>
               <input className={inputClass} type="email" name="email" placeholder="Email" autoComplete="email" required />
               <input className={inputClass} type="password" name="password" placeholder="Password (8+ characters)" autoComplete="new-password" required minLength={8} />

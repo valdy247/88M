@@ -44,7 +44,8 @@ export async function signUp(formData: FormData) {
   const firstName = value(formData, 'first_name');
   const lastName = value(formData, 'last_name');
   const rank = value(formData, 'rank');
-  const classNumber = value(formData, 'class_number');
+  const classDigits = value(formData, 'class_number').replace(/\D/g, '');
+  const classNumber = classDigits ? `${classDigits}T` : '';
   const email = value(formData, 'email').toLowerCase();
   const password = value(formData, 'password');
 
