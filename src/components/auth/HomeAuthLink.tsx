@@ -42,7 +42,7 @@ export async function HomeAuthLink() {
         <nav className="absolute right-0 mt-2 w-64 rounded-2xl border border-slate-700 bg-slate-950/95 p-2 shadow-2xl backdrop-blur" aria-label="Account menu">
           <Link href="/account#profile" className={menuItem}><UserRound className="h-4 w-4 text-amber-300" /> Profile</Link>
           <Link href="/account#test-results" className={menuItem}><BookOpen className="h-4 w-4 text-amber-300" /> Test Results</Link>
-          <Link href="/competition" className={menuItem}><Trophy className="h-4 w-4 text-amber-300" /> Daily Competition</Link>
+          <Link href="/competition" className={menuItem}><Trophy className="h-4 w-4 text-amber-300" /> Red Book Championship</Link>
           {profile?.role === 'admin' && <Link href="/admin" className={menuItem}><Shield className="h-4 w-4 text-amber-300" /> Admin</Link>}
           <div className="my-1 border-t border-slate-800" />
           <Link href="/cadences" className={menuItem}><Music2 className="h-4 w-4 text-amber-300" /> Cadences</Link>

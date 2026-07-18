@@ -27,12 +27,12 @@ export default function HomePage() {
         </div>
         <Link
           href="/competition"
-          aria-label="Open the daily 88M Hall of Fame competition"
+          aria-label="Open the 88M Red Book Championship"
           className="group mx-auto block w-full max-w-md rounded-[2rem] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/80"
         >
           <Image
-            src="/images/hall-of-fame-card.jpg"
-            alt="88M Hall of Fame daily competition"
+            src="/images/hall-of-fame-card.png"
+            alt="88M Hall of Fame Red Book Championship"
             width={1536}
             height={1024}
             sizes="(max-width: 480px) 92vw, 448px"

@@ -59,7 +59,7 @@ export function CompetitionExam({ questions }: { questions: CompetitionQuestion[
     return (
       <section className="mt-6 rounded-3xl border border-amber-500/30 bg-[#111214] p-6 text-center shadow-glow">
         <Trophy className="mx-auto h-9 w-9 text-amber-300" />
-        <h2 className="mt-3 text-xl font-bold">Daily Competition</h2>
+        <h2 className="mt-3 text-xl font-bold">Red Book Championship</h2>
         <p className="mt-2 text-sm text-slate-400">50 difficult questions · 40 minutes · one submission per day</p>
         {error && <p className="mt-4 text-sm text-red-300">{error}</p>}
         <button onClick={begin} disabled={busy} className="mt-5 w-full rounded-2xl bg-amber-500 px-5 py-3 font-bold text-slate-950 disabled:opacity-50">{busy ? 'Starting…' : 'Start Competition'}</button>
