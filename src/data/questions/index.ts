@@ -13,8 +13,9 @@ import { operationalReviewQuestions } from './operational-review';
 import { cargoLoadingQuestions } from './cargo-loading';
 import { vehicleSpecifications } from './vehicle-specifications';
 import type { Question } from '../../types/question';
+import { improveDistractors } from './distractor-improvements';
 
-export const allQuestions: Question[] = [
+const rawQuestions: Question[] = [
   ...radioProcedures,
   ...stripMaps,
   ...saluteReport,
@@ -30,6 +31,8 @@ export const allQuestions: Question[] = [
   ...cargoLoadingQuestions,
   ...vehicleSpecifications
 ];
+
+export const allQuestions: Question[] = rawQuestions.map(improveDistractors);
 
 export const questionCategories = {
   'Radio Procedures': radioProcedures,
