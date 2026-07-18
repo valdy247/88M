@@ -27,7 +27,7 @@ export default async function CompetitionPage() {
     <main className="min-h-screen bg-slate-950 px-4 py-8 text-slate-100">
       <div className="mx-auto max-w-3xl">
         <Link href="/" className="font-semibold text-amber-300">← Home</Link>
-        <div className="relative mt-6 aspect-[3/2] overflow-hidden rounded-3xl border border-amber-500/30 bg-black shadow-glow">
+        <div className="relative mt-6 aspect-[3/2] overflow-hidden rounded-3xl">
           <Image src="/images/hall-of-fame-card.png" alt="88M Hall of Fame" fill priority sizes="(max-width: 768px) 100vw, 768px" className="object-contain" />
         </div>
 
