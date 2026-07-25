@@ -2,12 +2,12 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, ArrowRight, Send, Trophy } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Send, Star, Trophy } from 'lucide-react';
 import type { AnswerId } from '../../types/question';
 import type { CompetitionQuestion } from '../../lib/competition/daily-questions';
 import { startCompetition, submitCompetition } from '../../app/competition/actions';
 
-export function CompetitionExam({ questions, hasPreviousAttempt }: { questions: CompetitionQuestion[]; hasPreviousAttempt: boolean }) {
+export function CompetitionExam({ questions, hasPreviousAttempt, isAdmin }: { questions: CompetitionQuestion[]; hasPreviousAttempt: boolean; isAdmin: boolean }) {
   const router = useRouter();
   const [startedAt, setStartedAt] = useState<number | null>(null);
   const [now, setNow] = useState(Date.now());
@@ -62,6 +62,29 @@ export function CompetitionExam({ questions, hasPreviousAttempt }: { questions: 
     setBusy(false);
   };
 
+  const hideCurrentQuestion = async () => {
+    const current = questions[index];
+    if (!current || !window.confirm('Hide this question from every test? It can be restored from Admin.')) return;
+    setBusy(true);
+    setError('');
+    const response = await fetch('/api/questions/visibility', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ questionId: current.id, hidden: true })
+    });
+    const result = await response.json();
+    if (!response.ok) setError(result.error ?? 'Could not hide the question.');
+    else {
+      setAnswers((value) => {
+        const next = { ...value };
+        delete next[current.id];
+        return next;
+      });
+      router.refresh();
+    }
+    setBusy(false);
+  };
+
   if (!startedAt) {
     return (
       <section className="mt-6 rounded-3xl border border-amber-500/30 bg-[#111214] p-6 text-center shadow-glow">
@@ -81,7 +104,10 @@ export function CompetitionExam({ questions, hasPreviousAttempt }: { questions: 
         <span>{index + 1} of 50 · {answered} answered</span><span className={remaining < 300 ? 'text-red-300' : 'text-amber-300'}>{time}</span>
       </div>
       <div className="rounded-3xl border border-slate-800 bg-[#111214] p-6 shadow-glow">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-300">{current.category}</p>
+        <div className="flex items-start justify-between gap-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-300">{current.category}</p>
+          {isAdmin && <button type="button" onClick={() => void hideCurrentQuestion()} disabled={busy} aria-label="Hide this question from all tests" className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 text-slate-400 hover:border-amber-400 hover:text-amber-300 disabled:opacity-50"><Star className="h-5 w-5" /></button>}
+        </div>
         <h2 className="mt-3 text-lg font-bold">{current.question}</h2>
         <div className="mt-5 grid gap-3">
           {current.options.map((option) => <button key={option.id} onClick={() => {

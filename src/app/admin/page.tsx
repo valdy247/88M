@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createClient } from '../../lib/supabase/server';
+import { allQuestions } from '../../data/questions';
+import { QuestionManager } from '../../components/admin/QuestionManager';
+import { getHiddenQuestionIds } from '../../lib/questions/visibility';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,9 +15,10 @@ export default async function AdminPage() {
   const { data: currentProfile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
   if (currentProfile?.role !== 'admin') redirect('/account');
 
-  const [{ data: users }, { data: attempts }] = await Promise.all([
+  const [{ data: users }, { data: attempts }, hiddenQuestionIds] = await Promise.all([
     supabase.from('profiles').select('id, email, first_name, last_name, rank, class_number, role, created_at').order('created_at', { ascending: false }),
-    supabase.from('exam_attempts').select('id, user_id, exam_type, score, correct_answers, total_questions, completed_at').gt('score', 0).order('completed_at', { ascending: false }).limit(100)
+    supabase.from('exam_attempts').select('id, user_id, exam_type, score, correct_answers, total_questions, completed_at').gt('score', 0).order('completed_at', { ascending: false }).limit(100),
+    getHiddenQuestionIds(supabase)
   ]);
   const average = attempts?.length ? Math.round(attempts.reduce((sum, item) => sum + item.score, 0) / attempts.length) : 0;
   const userMap = new Map(users?.map((profile) => [profile.id, profile]));
@@ -26,6 +30,7 @@ export default async function AdminPage() {
         <div className="grid grid-cols-3 gap-3">
           {[['Users', users?.length ?? 0], ['Tests', attempts?.length ?? 0], ['Average', `${average}%`]].map(([label, value]) => <div key={label} className="rounded-3xl border border-slate-800 bg-[#111214] p-5"><p className="text-xs text-slate-400">{label}</p><p className="mt-2 text-2xl font-semibold">{value}</p></div>)}
         </div>
+        <QuestionManager questions={allQuestions} initialHiddenIds={hiddenQuestionIds} />
         <section className="overflow-hidden rounded-3xl border border-slate-800 bg-[#111214]">
           <h2 className="p-5 text-lg font-semibold">Users</h2>
           <div className="divide-y divide-slate-800">{users?.map((profile) => <div key={profile.id} className="p-4 text-sm sm:flex sm:items-center sm:justify-between"><div><strong>{profile.rank} {profile.first_name} {profile.last_name}</strong><p className="text-slate-400">{profile.email}</p></div><span className="mt-2 block text-slate-300 sm:mt-0">Class {profile.class_number}{profile.role === 'admin' ? ' · Admin' : ''}</span></div>)}</div>

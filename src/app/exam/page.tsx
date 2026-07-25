@@ -22,18 +22,30 @@ export default function ExamPage() {
   const [dialogMode, setDialogMode] = useState<'manual' | 'last'>('manual');
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [hiddenQuestionIds, setHiddenQuestionIds] = useState<string[]>([]);
+  const [visibilityError, setVisibilityError] = useState('');
 
   useEffect(() => {
-    const requestedQuestionCount = new URLSearchParams(window.location.search).get('mode') === 'big' ? 50 : 25;
-    const stored = loadExamSession();
-    if (stored && stored.status === 'active' && stored.questions.length === requestedQuestionCount) {
-      setSession(stored);
-    } else {
-      const nextSession = createExamSession(generateExam(allQuestions, requestedQuestionCount));
-      saveExamSession(nextSession);
-      setSession(nextSession);
-    }
-    setLoading(false);
+    const load = async () => {
+      const requestedQuestionCount = new URLSearchParams(window.location.search).get('mode') === 'big' ? 50 : 25;
+      const response = await fetch('/api/questions/visibility', { cache: 'no-store' });
+      const visibility = response.ok ? await response.json() as { hiddenQuestionIds: string[]; isAdmin: boolean } : { hiddenQuestionIds: [], isAdmin: false };
+      const hidden = new Set(visibility.hiddenQuestionIds);
+      const stored = loadExamSession();
+      const filteredStored = stored ? { ...stored, questions: stored.questions.filter((question) => !hidden.has(question.id)) } : null;
+      setIsAdmin(visibility.isAdmin);
+      setHiddenQuestionIds(visibility.hiddenQuestionIds);
+      if (filteredStored && filteredStored.status === 'active' && filteredStored.questions.length === requestedQuestionCount) {
+        setSession(filteredStored);
+      } else {
+        const nextSession = createExamSession(generateExam(allQuestions.filter((question) => !hidden.has(question.id)), requestedQuestionCount));
+        saveExamSession(nextSession);
+        setSession(nextSession);
+      }
+      setLoading(false);
+    };
+    void load();
   }, []);
 
   useEffect(() => {
@@ -128,9 +140,32 @@ export default function ExamPage() {
 
   const discardAndRestart = () => {
     clearExamSession();
-    const nextSession = createExamSession(generateExam(allQuestions, session.questions.length));
+    const hidden = new Set(hiddenQuestionIds);
+    const nextSession = createExamSession(generateExam(allQuestions.filter((question) => !hidden.has(question.id)), session.questions.length));
     saveExamSession(nextSession);
     setSession(nextSession);
+  };
+
+  const hideCurrentQuestion = async () => {
+    if (!currentQuestion || !session) return;
+    if (!window.confirm('Hide this question from every test? It will remain in the system and can be restored from Admin.')) return;
+    setVisibilityError('');
+    const response = await fetch('/api/questions/visibility', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ questionId: currentQuestion.id, hidden: true })
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      setVisibilityError(result.error ?? 'Could not hide the question.');
+      return;
+    }
+    setHiddenQuestionIds((current) => [...current, currentQuestion.id]);
+    setSession((current) => {
+      if (!current) return current;
+      const questions = current.questions.filter((question) => question.id !== currentQuestion.id);
+      return { ...current, questions, currentQuestionIndex: Math.min(current.currentQuestionIndex, Math.max(0, questions.length - 1)) };
+    });
   };
 
   return (
@@ -175,7 +210,10 @@ export default function ExamPage() {
             question={currentQuestion}
             selectedAnswer={session.answers[currentQuestion.id] ?? null}
             onSelect={(answerId) => handleAnswer(currentQuestion.id, answerId)}
+            isAdmin={isAdmin}
+            onHide={() => void hideCurrentQuestion()}
           />
+          {visibilityError && <p className="rounded-2xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">{visibilityError}</p>}
           <CountdownTimer
             startedAt={session.startedAt}
             endsAt={session.endsAt}

@@ -30,10 +30,12 @@ export function competitionDate() {
   }).format(new Date());
 }
 
-export function getDailyCompetitionQuestions(date = competitionDate()) {
+export function getDailyCompetitionQuestions(date = competitionDate(), hiddenQuestionIds: string[] = []) {
   const seed = seedFromDate(date);
-  const hard = seededShuffle(allQuestions.filter((question) => question.difficulty === 'hard'), seed);
-  const medium = seededShuffle(allQuestions.filter((question) => question.difficulty === 'medium'), seed ^ 0x9e3779b9);
+  const hidden = new Set(hiddenQuestionIds);
+  const available = allQuestions.filter((question) => !hidden.has(question.id));
+  const hard = seededShuffle(available.filter((question) => question.difficulty === 'hard'), seed);
+  const medium = seededShuffle(available.filter((question) => question.difficulty === 'medium'), seed ^ 0x9e3779b9);
   return seededShuffle([...hard, ...medium.slice(0, 50 - hard.length)], seed ^ 0x85ebca6b);
 }
 
@@ -44,6 +46,6 @@ export type CompetitionQuestion = {
   options: { id: 'A' | 'B' | 'C' | 'D'; text: string }[];
 };
 
-export function getPublicCompetitionQuestions(date = competitionDate()): CompetitionQuestion[] {
-  return getDailyCompetitionQuestions(date).map(({ id, category, question, options }) => ({ id, category, question, options }));
+export function getPublicCompetitionQuestions(date = competitionDate(), hiddenQuestionIds: string[] = []): CompetitionQuestion[] {
+  return getDailyCompetitionQuestions(date, hiddenQuestionIds).map(({ id, category, question, options }) => ({ id, category, question, options }));
 }

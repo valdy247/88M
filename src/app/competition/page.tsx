@@ -5,6 +5,7 @@ import { createClient } from '../../lib/supabase/server';
 import { competitionDate, getPublicCompetitionQuestions } from '../../lib/competition/daily-questions';
 import { competitionStatus, formatCompetitionTime } from '../../lib/competition/status';
 import { CompetitionExam } from '../../components/competition/CompetitionExam';
+import { getHiddenQuestionIds } from '../../lib/questions/visibility';
 
 type LeaderboardRow = { leaderboard_rank: number; user_id: string; soldier: string; score: number; duration_seconds: number };
 
@@ -16,9 +17,11 @@ export default async function CompetitionPage() {
   if (!user) redirect('/login?message=Log+in+to+compete.');
 
   const date = competitionDate();
-  const [{ data: leaderboardData }, { data: attempt }] = await Promise.all([
+  const [{ data: leaderboardData }, { data: attempt }, { data: profile }, hiddenQuestionIds] = await Promise.all([
     supabase.rpc('get_daily_competition_leaderboard'),
-    supabase.from('competition_attempts').select('score, correct_answers, duration_seconds').eq('user_id', user.id).eq('competition_date', date).maybeSingle()
+    supabase.from('competition_attempts').select('score, correct_answers, duration_seconds').eq('user_id', user.id).eq('competition_date', date).maybeSingle(),
+    supabase.from('profiles').select('role').eq('id', user.id).maybeSingle(),
+    getHiddenQuestionIds(supabase)
   ]);
   const leaderboard = (leaderboardData ?? []) as LeaderboardRow[];
   const leaderboardUserIds = leaderboard.map((row) => row.user_id);
@@ -56,7 +59,7 @@ export default async function CompetitionPage() {
           </div>
         </section>
 
-        <CompetitionExam questions={getPublicCompetitionQuestions(date)} hasPreviousAttempt={Boolean(attempt)} />
+        <CompetitionExam questions={getPublicCompetitionQuestions(date, hiddenQuestionIds)} hasPreviousAttempt={Boolean(attempt)} isAdmin={profile?.role === 'admin'} />
         {attempt && <p className="mt-4 rounded-2xl border border-emerald-600/30 bg-emerald-500/10 p-4 text-center text-sm text-emerald-200">Your latest result is on the leaderboard. Retaking the test will replace it, even if the new score is lower.</p>}
 
         <section className="mt-8 overflow-hidden rounded-3xl border border-slate-800 bg-[#111214] shadow-glow">
