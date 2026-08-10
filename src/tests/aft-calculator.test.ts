@@ -47,6 +47,25 @@ describe('AFT calculator', () => {
     expect(result.total).toBe(453);
   });
 
+  it('matches the female 17-21 maximum thresholds from the supplied table', () => {
+    const result = calculateAftScore({
+      age: 20,
+      standard: 'female',
+      deadlift: 220,
+      pushups: 53,
+      sdcSeconds: 1 * 60 + 55,
+      plankSeconds: 3 * 60 + 40,
+      runSeconds: 16 * 60,
+    });
+
+    expect(result.events.map((event) => event.score)).toEqual([100, 100, 100, 100, 100]);
+    expect(result.total).toBe(500);
+  });
+
+  it('skips official dash rows instead of inventing intermediate scores', () => {
+    expect(scoreAftEvent('deadlift', 28, 'male', 325)).toBe(95);
+  });
+
   it('uses the next lower official point threshold when a raw result falls between rows', () => {
     expect(scoreAftEvent('sdc', 28, 'male', 1 * 60 + 44)).toBe(90);
   });
