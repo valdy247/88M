@@ -40,6 +40,15 @@ export default function HomePage() {
             className="h-auto w-full rounded-[2rem] drop-shadow-2xl transition duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
           />
         </Link>
+
+        <Link
+          href="/aft-calculator"
+          aria-label="Open the AFT Calculator"
+          className="mx-auto flex w-full max-w-md items-center justify-center rounded-2xl border border-amber-400/60 bg-amber-500 px-5 py-4 text-center text-lg font-black text-slate-950 shadow-2xl transition hover:bg-amber-400 active:scale-[0.99] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/80"
+        >
+          AFT Calculator
+        </Link>
+
         <Link
           href="/exam"
           aria-label="Start the 25-question Red Book practice test"
